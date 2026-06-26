@@ -218,7 +218,8 @@ function computeAll(){
   const poolTotal=n*POOL_PER_PLAYER;
   const max=Math.max(...PLAYERS.map(p=>scores[p]));
   const winners=PLAYERS.filter(p=>scores[p]===max);
-  const poolShare={}; PLAYERS.forEach(p=>poolShare[p]= winners.includes(p)? poolTotal/winners.length : 0);
+  // Net pool: every player pays RM10 in; winner(s) split the RM50 pot.
+  const poolShare={}; PLAYERS.forEach(p=>poolShare[p]= (winners.includes(p)? poolTotal/winners.length : 0) - POOL_PER_PLAYER);
   return {scores,settle,poolShare,poolTotal,winners,max};
 }
 
@@ -241,7 +242,7 @@ function renderBoard(){
       `<td class="name">${esc(p)}${won?'<span class="badge">pool</span>':''}</td>`+
       `<td class="pts">${c.scores[p]}</td>`+
       `<td class="${cls(c.settle[p])}">${fmt(c.settle[p])}</td>`+
-      `<td class="${c.poolShare[p]>0?'pos':'zero'}">${c.poolShare[p]>0?'+RM'+c.poolShare[p].toFixed(0):'—'}</td>`+
+      `<td class="${cls(c.poolShare[p])}">${fmt(c.poolShare[p])}</td>`+
       `<td class="${cls(net)}">${fmt(net)}</td>`;
     tb.appendChild(tr);
   });
