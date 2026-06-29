@@ -66,6 +66,14 @@
   .side .pick:hover:not(:disabled){border-color:var(--green);color:var(--green);}
   .side .pick.on{background:var(--green);border-color:var(--green);color:#06210d;font-weight:700;}
   .side .pick:disabled{opacity:.25;cursor:not-allowed;}
+  .side{position:relative;}
+  .bk{flex:0 0 auto;background:rgba(124,92,255,.18);border:1px solid var(--accent2);color:#c7b6ff;
+    font-size:10px;font-weight:700;border-radius:10px;padding:1px 6px;cursor:pointer;user-select:none;white-space:nowrap;}
+  .bk .tip{position:absolute;z-index:8;bottom:100%;right:0;margin-bottom:4px;display:none;
+    background:#0b0f16;border:1px solid var(--accent2);color:var(--text);font-size:11px;font-weight:400;
+    padding:5px 8px;border-radius:6px;white-space:normal;width:max-content;max-width:200px;text-align:left;
+    box-shadow:0 4px 14px rgba(0,0,0,.5);}
+  .bk.open .tip{display:block;}
   .champ-box{display:flex;flex-direction:column;justify-content:center;}
   .champ-card{background:rgba(255,211,77,.12);border:1px solid var(--gold);border-radius:10px;padding:16px;text-align:center;}
   .champ-card .t{font-size:18px;font-weight:700;color:var(--gold);}
@@ -367,8 +375,11 @@ function sideHTML(n, side){
     const label = t || ("Winner M"+FEED[n][side==="top"?0:1]);
     teamPart = `<span class="tname${t?"":" empty"}"${tip}>${esc(label)}</span>`;
   }
+  const badge = backers.length
+    ? `<span class="bk" title="Backed by: ${esc(backers.join(", "))}">👤${backers.length}<span class="tip"><b>Backed by</b><br>${esc(backers.join(", "))}</span></span>`
+    : "";
   const pick = `<button class="pick${won?" on":""}" data-n="${n}" data-side="${side}" ${t?"":"disabled"} title="Mark winner">${won?"✓":"○"}</button>`;
-  return `<div class="${cls}" data-n="${n}" data-side="${side}"${tip}>${teamPart}${pick}</div>`;
+  return `<div class="${cls}" data-n="${n}" data-side="${side}"${tip}>${teamPart}${badge}${pick}</div>`;
 }
 function matchHTML(n){
   return `<div class="match"><div class="mno">Match ${n}</div>`+
@@ -390,6 +401,11 @@ function renderBracket(){
   // explicit winner buttons
   wrap.querySelectorAll(".pick").forEach(btn=>{
     btn.addEventListener("click",e=>{ e.stopPropagation(); if(btn.disabled) return; setWinner(+btn.dataset.n, btn.dataset.side); });
+  });
+  // tap backer badge to reveal players (mobile-friendly)
+  wrap.querySelectorAll(".bk").forEach(b=>{
+    b.addEventListener("click",e=>{ e.stopPropagation(); const open=b.classList.contains("open");
+      wrap.querySelectorAll(".bk.open").forEach(x=>x.classList.remove("open")); if(!open) b.classList.add("open"); });
   });
   // clicking a resolved team label (later rounds) also picks it
   wrap.querySelectorAll(".side").forEach(el=>{
@@ -414,6 +430,7 @@ function renderAll(){ renderTop(); renderStandings(); renderTracker(); renderBra
 
 document.getElementById("saveBtn").onclick=()=>{ save(); const b=document.getElementById("saveBtn"); b.textContent="✓ Saved"; setTimeout(()=>b.textContent="💾 Save",1500); };
 document.getElementById("resetBtn").onclick=()=>{ if(confirm("Reset to the official Round-of-32 teams and clear all winners?")){ state=blank(); save(); renderAll(); } };
+document.addEventListener("click",()=>{ document.querySelectorAll(".bk.open").forEach(x=>x.classList.remove("open")); });
 
 renderAll();
 </script>
