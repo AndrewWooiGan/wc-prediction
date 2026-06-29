@@ -69,11 +69,10 @@
   .side{position:relative;}
   .bk{flex:0 0 auto;background:rgba(124,92,255,.18);border:1px solid var(--accent2);color:#c7b6ff;
     font-size:10px;font-weight:700;border-radius:10px;padding:1px 6px;cursor:pointer;user-select:none;white-space:nowrap;}
-  .bk .tip{position:absolute;z-index:8;bottom:100%;right:0;margin-bottom:4px;display:none;
-    background:#0b0f16;border:1px solid var(--accent2);color:var(--text);font-size:11px;font-weight:400;
-    padding:5px 8px;border-radius:6px;white-space:normal;width:max-content;max-width:200px;text-align:left;
-    box-shadow:0 4px 14px rgba(0,0,0,.5);}
-  .bk.open .tip{display:block;}
+  #bkTip{position:fixed;z-index:9999;display:none;background:#0b0f16;border:1px solid var(--accent2);
+    color:var(--text);font-size:12px;padding:7px 10px;border-radius:8px;max-width:220px;line-height:1.45;
+    box-shadow:0 6px 20px rgba(0,0,0,.6);}
+  #bkTip b{color:#c7b6ff;}
   .champ-box{display:flex;flex-direction:column;justify-content:center;}
   .champ-card{background:rgba(255,211,77,.12);border:1px solid var(--gold);border-radius:10px;padding:16px;text-align:center;}
   .champ-card .t{font-size:18px;font-weight:700;color:var(--gold);}
@@ -144,6 +143,8 @@
 
   <div class="sub" style="margin-top:24px">截止：BEFORE ROUND 32 · 猜中冠军者平分奖金池 · 纯娱乐 😄</div>
 </div>
+
+<div id="bkTip"></div>
 
 <datalist id="wcTeams">
   <option>Mexico</option><option>South Korea</option><option>Czechia</option><option>South Africa</option>
@@ -376,7 +377,7 @@ function sideHTML(n, side){
     teamPart = `<span class="tname${t?"":" empty"}"${tip}>${esc(label)}</span>`;
   }
   const badge = backers.length
-    ? `<span class="bk" title="Backed by: ${esc(backers.join(", "))}">👤${backers.length}<span class="tip"><b>Backed by</b><br>${esc(backers.join(", "))}</span></span>`
+    ? `<span class="bk" data-bk="${esc(backers.join(", "))}" title="Backed by: ${esc(backers.join(", "))}">👤${backers.length}</span>`
     : "";
   const pick = `<button class="pick${won?" on":""}" data-n="${n}" data-side="${side}" ${t?"":"disabled"} title="Mark winner">${won?"✓":"○"}</button>`;
   return `<div class="${cls}" data-n="${n}" data-side="${side}"${tip}>${teamPart}${badge}${pick}</div>`;
@@ -402,10 +403,9 @@ function renderBracket(){
   wrap.querySelectorAll(".pick").forEach(btn=>{
     btn.addEventListener("click",e=>{ e.stopPropagation(); if(btn.disabled) return; setWinner(+btn.dataset.n, btn.dataset.side); });
   });
-  // tap backer badge to reveal players (mobile-friendly)
+  // tap backer badge to reveal players (mobile-friendly, viewport-anchored so it can't be clipped)
   wrap.querySelectorAll(".bk").forEach(b=>{
-    b.addEventListener("click",e=>{ e.stopPropagation(); const open=b.classList.contains("open");
-      wrap.querySelectorAll(".bk.open").forEach(x=>x.classList.remove("open")); if(!open) b.classList.add("open"); });
+    b.addEventListener("click",e=>{ e.stopPropagation(); showBkTip(b); });
   });
   // clicking a resolved team label (later rounds) also picks it
   wrap.querySelectorAll(".side").forEach(el=>{
@@ -430,7 +430,25 @@ function renderAll(){ renderTop(); renderStandings(); renderTracker(); renderBra
 
 document.getElementById("saveBtn").onclick=()=>{ save(); const b=document.getElementById("saveBtn"); b.textContent="✓ Saved"; setTimeout(()=>b.textContent="💾 Save",1500); };
 document.getElementById("resetBtn").onclick=()=>{ if(confirm("Reset to the official Round-of-32 teams and clear all winners?")){ state=blank(); save(); renderAll(); } };
-document.addEventListener("click",()=>{ document.querySelectorAll(".bk.open").forEach(x=>x.classList.remove("open")); });
+// viewport-anchored backer popup (never clipped by bracket/match overflow)
+function hideBkTip(){ const t=document.getElementById("bkTip"); t.style.display="none"; t.dataset.for=""; }
+function showBkTip(b){
+  const tip=document.getElementById("bkTip");
+  if(tip.style.display==="block" && tip.dataset.for===b.dataset.bk){ hideBkTip(); return; }
+  tip.innerHTML=`<b>Backed by</b><br>${esc(b.dataset.bk)}`;
+  tip.dataset.for=b.dataset.bk;
+  tip.style.left="0px"; tip.style.top="0px"; tip.style.display="block";
+  const r=b.getBoundingClientRect(), tw=tip.offsetWidth, th=tip.offsetHeight, m=8;
+  let left=r.left, top=r.bottom+6;
+  if(left+tw>window.innerWidth-m) left=window.innerWidth-tw-m;
+  if(left<m) left=m;
+  if(top+th>window.innerHeight-m) top=r.top-th-6;   // flip above if no room below
+  if(top<m) top=m;
+  tip.style.left=left+"px"; tip.style.top=top+"px";
+}
+document.addEventListener("click",hideBkTip);
+window.addEventListener("resize",hideBkTip);
+document.querySelector(".bracket-scroll").addEventListener("scroll",hideBkTip);
 
 renderAll();
 </script>
