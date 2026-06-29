@@ -280,6 +280,8 @@ function statusOf(teamName){
 const BACKED = [...new Set(ENTRIES.flatMap(e=>e.teams))]; // display names
 const BACKED_NORM = new Set(BACKED.map(norm));
 const isBacked = t => t && BACKED_NORM.has(norm(t));
+// players who backed a given team
+function backersOf(t){ if(!t) return []; const k=norm(t); return ENTRIES.filter(e=>e.teams.some(x=>norm(x)===k)).map(e=>e.name); }
 
 // ---------- RENDER: KPIs + standings + tracker ----------
 function totalSlots(){ return ENTRIES.reduce((a,e)=>a+e.teams.length,0); }
@@ -354,17 +356,19 @@ function sideHTML(n, side){
   const won = state.pick[n]===side;
   const backed = isBacked(t);
   const cls = `side${won?" win":""}${backed?" backed":""}`;
+  const backers = backed ? backersOf(t) : [];
+  const tip = backers.length ? ` title="Backed by: ${esc(backers.join(", "))}"` : "";
   let teamPart;
   if(isR32(n)){
     const slot = R32.find(m=>m.n===n)[side];
     const val = state.r32[n][side];
-    teamPart = `<input list="wcTeams" data-n="${n}" data-side="${side}" value="${esc(val)}" placeholder="${esc(slot)}" />`;
+    teamPart = `<input list="wcTeams" data-n="${n}" data-side="${side}" value="${esc(val)}" placeholder="${esc(slot)}"${tip} />`;
   } else {
     const label = t || ("Winner M"+FEED[n][side==="top"?0:1]);
-    teamPart = `<span class="tname${t?"":" empty"}">${esc(label)}</span>`;
+    teamPart = `<span class="tname${t?"":" empty"}"${tip}>${esc(label)}</span>`;
   }
   const pick = `<button class="pick${won?" on":""}" data-n="${n}" data-side="${side}" ${t?"":"disabled"} title="Mark winner">${won?"✓":"○"}</button>`;
-  return `<div class="${cls}" data-n="${n}" data-side="${side}">${teamPart}${pick}</div>`;
+  return `<div class="${cls}" data-n="${n}" data-side="${side}"${tip}>${teamPart}${pick}</div>`;
 }
 function matchHTML(n){
   return `<div class="match"><div class="mno">Match ${n}</div>`+
