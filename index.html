@@ -128,12 +128,13 @@
   <h2>⚔️ Knockout bracket — trace the route</h2>
   <div class="card">
     <div class="controls">
+      <button class="ghost" id="refreshBtn">🔄 Fetch latest results</button>
       <button class="ghost" id="saveBtn">💾 Save</button>
       <button class="ghost" id="resetBtn">↺ Reset bracket</button>
-      <span class="sub" style="margin:0">Click the ○ button next to a team to mark it the winner — it advances automatically.</span>
+      <span class="sub" style="margin:0" id="updated"></span>
     </div>
     <div class="note" style="margin-bottom:14px">
-      The <strong>Round of 32</strong> is pre-filled with the real matchups. To record a result, click the <strong>○</strong> button beside the winning team — it turns into a green ✓ and that team advances to the next round automatically. Keep going through to the <strong>Final</strong>; the final winner sets the champion and the payout above. (You can still edit any R32 team name by typing in its box.) Cross-check on the <a class="inline" href="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/standings" target="_blank">official bracket</a>.
+      Results update <strong>automatically</strong> once a day from official data (and you can hit <em>🔄 Fetch latest results</em> anytime). You can also record a result yourself: click the <strong>○</strong> button beside the winning team — it turns into a green ✓ and advances automatically through to the <strong>Final</strong>, which sets the champion and payout above. (Official results take priority on the next refresh.) Cross-check on the <a class="inline" href="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/standings" target="_blank">official bracket</a>.
     </div>
     <div class="bracket-scroll">
       <div class="bracket" id="bracket"></div>
@@ -201,7 +202,13 @@ const DEFAULT_R32 = {
 const ALIAS = {holland:"netherlands", netherland:"netherlands", netherlands:"netherlands",
   turkey:"türkiye", turkiye:"türkiye", "türkiye":"türkiye",
   "ivory coast":"côte d'ivoire", "cote d'ivoire":"côte d'ivoire", "côte d'ivoire":"côte d'ivoire",
-  usa:"usa", "united states":"usa", korea:"south korea", "south korea":"south korea"};
+  usa:"usa", "united states":"usa", "united states of america":"usa",
+  korea:"south korea", "south korea":"south korea", "korea republic":"south korea",
+  bosnia:"bosnia", "bosnia and herzegovina":"bosnia", "bosnia & herzegovina":"bosnia",
+  "cape verde":"cape verde", "cabo verde":"cape verde",
+  "dr congo":"dr congo", "congo dr":"dr congo", "democratic republic of congo":"dr congo",
+  "democratic republic of the congo":"dr congo", "dr congo (kinshasa)":"dr congo",
+  "czechia":"czechia", "czech republic":"czechia", "czech":"czechia"};
 function norm(s){ if(!s) return ""; let k=s.trim().toLowerCase(); return ALIAS[k]||k; }
 
 // ---------- BRACKET STRUCTURE (official 2026 feeder map) ----------
@@ -430,6 +437,46 @@ function renderAll(){ renderTop(); renderStandings(); renderTracker(); renderBra
 
 document.getElementById("saveBtn").onclick=()=>{ save(); const b=document.getElementById("saveBtn"); b.textContent="✓ Saved"; setTimeout(()=>b.textContent="💾 Save",1500); };
 document.getElementById("resetBtn").onclick=()=>{ if(confirm("Reset to the official Round-of-32 teams and clear all winners?")){ state=blank(); save(); renderAll(); } };
+
+// ---------- AUTO-UPDATE from results.json (written daily by GitHub Action) ----------
+const pairKey=(a,b)=>[norm(a),norm(b)].sort().join("|");
+function applyOfficial(matches){
+  const map={};
+  (matches||[]).forEach(m=>{ if(m && m.winner && m.home && m.away) map[pairKey(m.home,m.away)]=norm(m.winner); });
+  let changed=true, guard=0, any=false;
+  while(changed && guard++<12){
+    changed=false;
+    for(const r of ROUNDS) for(const n of r.matches){
+      const tt=teamAt(n,"top"), bt=teamAt(n,"bot");
+      if(!tt||!bt) continue;
+      const w=map[pairKey(tt,bt)];
+      if(!w) continue;
+      const side = norm(tt)===w?"top" : norm(bt)===w?"bot" : null;
+      if(side && state.pick[n]!==side){ state.pick[n]=side; changed=true; any=true; }
+    }
+  }
+  return any;
+}
+async function loadOfficial(opts){
+  const el=document.getElementById("updated");
+  try{
+    const res=await fetch("results.json?_="+Date.now(), {cache:"no-store"});
+    if(!res.ok){ if(opts&&opts.manual) el.textContent="No results file found yet."; return; }
+    const data=await res.json();
+    const changed=applyOfficial(data.matches);
+    if(changed){ save(); renderAll(); }
+    if(data.updated){
+      const d=new Date(data.updated);
+      el.textContent="Auto-updated: "+d.toLocaleString()+" · "+(data.matches?data.matches.length:0)+" results";
+    } else { el.textContent="Auto-update ready — no results recorded yet."; }
+  }catch(e){
+    el.textContent = (location.protocol==="file:")
+      ? "(Auto-update works once hosted on GitHub Pages.)"
+      : "Couldn't load results.json.";
+  }
+}
+document.getElementById("refreshBtn").onclick=()=>loadOfficial({manual:true});
+
 // viewport-anchored backer popup (never clipped by bracket/match overflow)
 function hideBkTip(){ const t=document.getElementById("bkTip"); t.style.display="none"; t.dataset.for=""; }
 function showBkTip(b){
@@ -451,6 +498,7 @@ window.addEventListener("resize",hideBkTip);
 document.querySelector(".bracket-scroll").addEventListener("scroll",hideBkTip);
 
 renderAll();
+loadOfficial();   // pull official results on load (works when hosted)
 </script>
 </body>
 </html>
