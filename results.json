@@ -1,5 +1,330 @@
 {
-  "updated": null,
+  "updated": "2026-06-30T05:54:48.024Z",
   "source": "football-data.org",
-  "matches": []
+  "matches": [
+    {
+      "stage": "GROUP_STAGE",
+      "home": "Mexico",
+      "away": "South Africa",
+      "winner": "Mexico"
+    },
+    {
+      "stage": "GROUP_STAGE",
+      "home": "South Korea",
+      "away": "Czechia",
+      "winner": "South Korea"
+    },
+    {
+      "stage": "GROUP_STAGE",
+      "home": "United States",
+      "away": "Paraguay",
+      "winner": "United States"
+    },
+    {
+      "stage": "GROUP_STAGE",
+      "home": "Haiti",
+      "away": "Scotland",
+      "winner": "Scotland"
+    },
+    {
+      "stage": "GROUP_STAGE",
+      "home": "Australia",
+      "away": "Turkey",
+      "winner": "Australia"
+    },
+    {
+      "stage": "GROUP_STAGE",
+      "home": "Germany",
+      "away": "Curaçao",
+      "winner": "Germany"
+    },
+    {
+      "stage": "GROUP_STAGE",
+      "home": "Ivory Coast",
+      "away": "Ecuador",
+      "winner": "Ivory Coast"
+    },
+    {
+      "stage": "GROUP_STAGE",
+      "home": "Sweden",
+      "away": "Tunisia",
+      "winner": "Sweden"
+    },
+    {
+      "stage": "GROUP_STAGE",
+      "home": "France",
+      "away": "Senegal",
+      "winner": "France"
+    },
+    {
+      "stage": "GROUP_STAGE",
+      "home": "Iraq",
+      "away": "Norway",
+      "winner": "Norway"
+    },
+    {
+      "stage": "GROUP_STAGE",
+      "home": "Argentina",
+      "away": "Algeria",
+      "winner": "Argentina"
+    },
+    {
+      "stage": "GROUP_STAGE",
+      "home": "Austria",
+      "away": "Jordan",
+      "winner": "Austria"
+    },
+    {
+      "stage": "GROUP_STAGE",
+      "home": "England",
+      "away": "Croatia",
+      "winner": "England"
+    },
+    {
+      "stage": "GROUP_STAGE",
+      "home": "Ghana",
+      "away": "Panama",
+      "winner": "Ghana"
+    },
+    {
+      "stage": "GROUP_STAGE",
+      "home": "Uzbekistan",
+      "away": "Colombia",
+      "winner": "Colombia"
+    },
+    {
+      "stage": "GROUP_STAGE",
+      "home": "Switzerland",
+      "away": "Bosnia-Herzegovina",
+      "winner": "Switzerland"
+    },
+    {
+      "stage": "GROUP_STAGE",
+      "home": "Canada",
+      "away": "Qatar",
+      "winner": "Canada"
+    },
+    {
+      "stage": "GROUP_STAGE",
+      "home": "Mexico",
+      "away": "South Korea",
+      "winner": "Mexico"
+    },
+    {
+      "stage": "GROUP_STAGE",
+      "home": "United States",
+      "away": "Australia",
+      "winner": "United States"
+    },
+    {
+      "stage": "GROUP_STAGE",
+      "home": "Scotland",
+      "away": "Morocco",
+      "winner": "Morocco"
+    },
+    {
+      "stage": "GROUP_STAGE",
+      "home": "Brazil",
+      "away": "Haiti",
+      "winner": "Brazil"
+    },
+    {
+      "stage": "GROUP_STAGE",
+      "home": "Turkey",
+      "away": "Paraguay",
+      "winner": "Paraguay"
+    },
+    {
+      "stage": "GROUP_STAGE",
+      "home": "Netherlands",
+      "away": "Sweden",
+      "winner": "Netherlands"
+    },
+    {
+      "stage": "GROUP_STAGE",
+      "home": "Germany",
+      "away": "Ivory Coast",
+      "winner": "Germany"
+    },
+    {
+      "stage": "GROUP_STAGE",
+      "home": "Tunisia",
+      "away": "Japan",
+      "winner": "Japan"
+    },
+    {
+      "stage": "GROUP_STAGE",
+      "home": "Spain",
+      "away": "Saudi Arabia",
+      "winner": "Spain"
+    },
+    {
+      "stage": "GROUP_STAGE",
+      "home": "New Zealand",
+      "away": "Egypt",
+      "winner": "Egypt"
+    },
+    {
+      "stage": "GROUP_STAGE",
+      "home": "Argentina",
+      "away": "Austria",
+      "winner": "Argentina"
+    },
+    {
+      "stage": "GROUP_STAGE",
+      "home": "France",
+      "away": "Iraq",
+      "winner": "France"
+    },
+    {
+      "stage": "GROUP_STAGE",
+      "home": "Norway",
+      "away": "Senegal",
+      "winner": "Norway"
+    },
+    {
+      "stage": "GROUP_STAGE",
+      "home": "Jordan",
+      "away": "Algeria",
+      "winner": "Algeria"
+    },
+    {
+      "stage": "GROUP_STAGE",
+      "home": "Portugal",
+      "away": "Uzbekistan",
+      "winner": "Portugal"
+    },
+    {
+      "stage": "GROUP_STAGE",
+      "home": "Panama",
+      "away": "Croatia",
+      "winner": "Croatia"
+    },
+    {
+      "stage": "GROUP_STAGE",
+      "home": "Colombia",
+      "away": "Congo DR",
+      "winner": "Colombia"
+    },
+    {
+      "stage": "GROUP_STAGE",
+      "home": "Switzerland",
+      "away": "Canada",
+      "winner": "Switzerland"
+    },
+    {
+      "stage": "GROUP_STAGE",
+      "home": "Bosnia-Herzegovina",
+      "away": "Qatar",
+      "winner": "Bosnia-Herzegovina"
+    },
+    {
+      "stage": "GROUP_STAGE",
+      "home": "Morocco",
+      "away": "Haiti",
+      "winner": "Morocco"
+    },
+    {
+      "stage": "GROUP_STAGE",
+      "home": "Scotland",
+      "away": "Brazil",
+      "winner": "Brazil"
+    },
+    {
+      "stage": "GROUP_STAGE",
+      "home": "Czechia",
+      "away": "Mexico",
+      "winner": "Mexico"
+    },
+    {
+      "stage": "GROUP_STAGE",
+      "home": "South Africa",
+      "away": "South Korea",
+      "winner": "South Africa"
+    },
+    {
+      "stage": "GROUP_STAGE",
+      "home": "Ecuador",
+      "away": "Germany",
+      "winner": "Ecuador"
+    },
+    {
+      "stage": "GROUP_STAGE",
+      "home": "Curaçao",
+      "away": "Ivory Coast",
+      "winner": "Ivory Coast"
+    },
+    {
+      "stage": "GROUP_STAGE",
+      "home": "Tunisia",
+      "away": "Netherlands",
+      "winner": "Netherlands"
+    },
+    {
+      "stage": "GROUP_STAGE",
+      "home": "Turkey",
+      "away": "United States",
+      "winner": "Turkey"
+    },
+    {
+      "stage": "GROUP_STAGE",
+      "home": "Norway",
+      "away": "France",
+      "winner": "France"
+    },
+    {
+      "stage": "GROUP_STAGE",
+      "home": "Senegal",
+      "away": "Iraq",
+      "winner": "Senegal"
+    },
+    {
+      "stage": "GROUP_STAGE",
+      "home": "Uruguay",
+      "away": "Spain",
+      "winner": "Spain"
+    },
+    {
+      "stage": "GROUP_STAGE",
+      "home": "New Zealand",
+      "away": "Belgium",
+      "winner": "Belgium"
+    },
+    {
+      "stage": "GROUP_STAGE",
+      "home": "Panama",
+      "away": "England",
+      "winner": "England"
+    },
+    {
+      "stage": "GROUP_STAGE",
+      "home": "Croatia",
+      "away": "Ghana",
+      "winner": "Croatia"
+    },
+    {
+      "stage": "GROUP_STAGE",
+      "home": "Congo DR",
+      "away": "Uzbekistan",
+      "winner": "Congo DR"
+    },
+    {
+      "stage": "GROUP_STAGE",
+      "home": "Jordan",
+      "away": "Argentina",
+      "winner": "Argentina"
+    },
+    {
+      "stage": "LAST_32",
+      "home": "South Africa",
+      "away": "Canada",
+      "winner": "Canada"
+    },
+    {
+      "stage": "LAST_32",
+      "home": "Brazil",
+      "away": "Japan",
+      "winner": "Brazil"
+    }
+  ]
 }
