@@ -1,5 +1,5 @@
 {
-  "updated": "2026-06-30T05:54:48.024Z",
+  "updated": "2026-06-30T06:09:56.342Z",
   "source": "football-data.org",
   "matches": [
     {
@@ -325,6 +325,18 @@
       "home": "Brazil",
       "away": "Japan",
       "winner": "Brazil"
+    },
+    {
+      "stage": "LAST_32",
+      "home": "Germany",
+      "away": "Paraguay",
+      "winner": "Paraguay"
+    },
+    {
+      "stage": "LAST_32",
+      "home": "Netherlands",
+      "away": "Morocco",
+      "winner": "Morocco"
     }
   ]
 }
