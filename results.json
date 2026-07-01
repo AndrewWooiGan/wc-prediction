@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-01T22:30:33.088Z",
+  "updated": "2026-07-01T23:00:40.824Z",
   "source": "football-data.org",
   "matches": [
     {
@@ -361,6 +361,12 @@
       "home": "England",
       "away": "Congo DR",
       "winner": "England"
+    },
+    {
+      "stage": "LAST_32",
+      "home": "Belgium",
+      "away": "Senegal",
+      "winner": "Belgium"
     }
   ]
 }
