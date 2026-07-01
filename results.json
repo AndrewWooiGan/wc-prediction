@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-01T02:28:53.648Z",
+  "updated": "2026-07-01T05:30:03.623Z",
   "source": "football-data.org",
   "matches": [
     {
@@ -340,15 +340,15 @@
     },
     {
       "stage": "LAST_32",
-      "home": "Ivory Coast",
-      "away": "Norway",
-      "winner": "Norway"
-    },
-    {
-      "stage": "LAST_32",
       "home": "France",
       "away": "Sweden",
       "winner": "France"
+    },
+    {
+      "stage": "LAST_32",
+      "home": "Mexico",
+      "away": "Ecuador",
+      "winner": "Mexico"
     }
   ]
 }
