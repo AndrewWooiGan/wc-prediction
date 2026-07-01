@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-01T05:30:03.623Z",
+  "updated": "2026-07-01T10:31:25.938Z",
   "source": "football-data.org",
   "matches": [
     {
@@ -337,6 +337,12 @@
       "home": "Netherlands",
       "away": "Morocco",
       "winner": "Morocco"
+    },
+    {
+      "stage": "LAST_32",
+      "home": "Ivory Coast",
+      "away": "Norway",
+      "winner": "Norway"
     },
     {
       "stage": "LAST_32",
