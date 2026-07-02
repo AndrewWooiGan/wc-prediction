@@ -222,7 +222,20 @@
   .swatch{display:inline-block;width:10px;height:10px;border-radius:3px;vertical-align:middle;margin-right:5px;}
   a.inline{color:var(--accent);font-weight:600;}
   .footnote{color:var(--muted);font-size:12.5px;text-align:center;margin-top:26px;letter-spacing:.02em;}
-  @media(max-width:640px){body{padding:16px 12px 48px}.hero{padding:20px 18px}h2{font-size:20px}}
+  .table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+  .bracket-scroll{-webkit-overflow-scrolling:touch;}
+  @media(max-width:640px){
+    body{padding:16px 12px 48px}
+    .hero{padding:20px 18px}
+    h2{font-size:20px}
+    th,td{padding:9px 10px;font-size:13px}
+    .players{grid-template-columns:1fr;}
+    .side{padding:9px 9px;}
+    .side .pick{width:30px;height:30px;font-size:15px;}
+    .side .fl{width:22px;font-size:15px;}
+    .bk{font-size:11px;padding:2px 8px;}
+    .controls button{flex:1 1 auto;}
+  }
 </style>
 </head>
 <body>
@@ -267,10 +280,12 @@
 
   <h2>Team Tracker</h2>
   <div class="card">
+    <div class="table-wrap">
     <table id="teamTracker">
       <thead><tr><th>Team</th><th>Backers</th><th>If champion, pool each</th><th>Status</th></tr></thead>
       <tbody></tbody>
     </table>
+    </div>
   </div>
 
   <h2>Knockout Bracket — Trace the Route</h2>

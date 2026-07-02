@@ -185,6 +185,7 @@
   details summary{cursor:pointer;font-size:13px;color:var(--accent);font-weight:600;}
   .tot{color:var(--muted);font-size:12.5px;}
   .footnote{color:var(--muted);font-size:12.5px;text-align:center;margin-top:26px;letter-spacing:.02em;}
+  .table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;}
   @media(max-width:640px){body{padding:16px 12px 48px}.hero{padding:20px 18px}h2{font-size:20px}th,td{padding:9px 7px;font-size:12.5px}}
 </style>
 </head>
@@ -231,6 +232,7 @@
   <h2>Leaderboard</h2>
   <div class="card">
     <div class="podium" id="podium"></div>
+    <div class="table-wrap">
     <table id="board">
       <thead><tr>
         <th class="rank">#</th><th>Player</th><th>Points</th>
@@ -238,6 +240,7 @@
       </tr></thead>
       <tbody></tbody>
     </table>
+    </div>
     <div class="legend">
       <span>🥇 1st = 3 pts</span><span>🥈 2nd = 1 pt</span><span>other = 0</span>
       <span>Settlement = pairwise score-diff × RM2</span>
