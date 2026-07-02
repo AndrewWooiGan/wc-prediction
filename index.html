@@ -143,6 +143,32 @@
     background:color-mix(in srgb,var(--red) 8%,transparent);border:1px dashed color-mix(in srgb,var(--red) 35%,transparent);
     border-radius:9px;padding:8px 10px;}
 
+  /* ROAD-TO-FINAL MODAL (POC) */
+  .chip-x{cursor:pointer;}
+  .chip-x:hover{filter:brightness(1.18);text-decoration:underline;}
+  .modal{position:fixed;inset:0;z-index:10000;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,.55);padding:18px;}
+  .modal.open{display:flex;}
+  .modal-card{background:var(--panel);border:1px solid var(--line-strong);border-radius:16px;max-width:430px;width:100%;box-shadow:var(--shadow);padding:20px;max-height:86vh;overflow:auto;}
+  .modal-head{display:flex;align-items:center;gap:10px;margin-bottom:4px;}
+  .mh-flag{font-size:26px;line-height:1;}
+  .mh-name{font-family:'Barlow Semi Condensed',sans-serif;font-weight:800;font-size:24px;text-transform:uppercase;line-height:1;flex:1;}
+  .mh-x{cursor:pointer;border:1px solid var(--line-strong);background:var(--panel2);color:var(--text);border-radius:8px;width:30px;height:30px;font-size:15px;line-height:1;flex:0 0 auto;}
+  .modal-sub{color:var(--muted);font-size:13px;margin-bottom:14px;}
+  .road{display:flex;flex-direction:column;margin-bottom:16px;}
+  .rstep{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid var(--line);}
+  .rstep:last-child{border-bottom:none;}
+  .rdot{flex:0 0 auto;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;border:1px solid var(--line-strong);color:var(--muted);}
+  .rdot.won{background:var(--green);border-color:var(--green);color:#04240f;}
+  .rdot.lost{background:var(--red);border-color:var(--red);color:#fff;}
+  .rdot.champ{background:var(--gold);border-color:var(--gold);color:#3a2a00;}
+  .rinfo{flex:1;min-width:0;}
+  .rround{font-family:'Barlow Semi Condensed',sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:.06em;font-size:11px;color:var(--muted);}
+  .ropp{font-size:14px;font-weight:600;}
+  .rres{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;flex:0 0 auto;}
+  .rres.won{color:var(--green);} .rres.lost{color:var(--red);} .rres.pending{color:var(--faint);} .rres.champ{color:var(--gold);}
+  .prize-box{background:color-mix(in srgb,var(--gold) 10%,transparent);border:1px solid color-mix(in srgb,var(--gold) 45%,transparent);border-radius:12px;padding:12px 14px;font-size:13px;line-height:1.5;}
+  .pz-amt{font-family:'Barlow Semi Condensed',sans-serif;font-weight:800;font-size:26px;color:var(--gold);}
+
   /* TABLES */
   table{width:100%;border-collapse:collapse;font-size:14px;}
   th,td{padding:12px 14px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top;}
@@ -314,6 +340,8 @@
 </div>
 
 <div id="bkTip"></div>
+
+<div id="roadModal" class="modal"><div class="modal-card" id="roadCard"></div></div>
 
 <datalist id="wcTeams">
   <option>Mexico</option><option>South Korea</option><option>Czechia</option><option>South Africa</option>
@@ -502,7 +530,8 @@ function renderStandings(){
     card.className="pcard"+(r.hasChamp?" pcard-win":"")+(eliminated?" pcard-elim":"");
     const chips = r.statuses.map(({t,s})=>{
       let cls = s.champ?"champ": s.alive?(ch?"alive":"tbd"):"out";
-      return `<span class="chip ${cls}" title="${esc(s.text)}">${disp(t)}</span>`;
+      const clk = s.alive ? " chip-x" : "";
+      return `<span class="chip ${cls}${clk}" data-team="${esc(t)}" title="${s.alive?'Tap for road to final':esc(s.text)}">${disp(t)}</span>`;
     }).join("");
     const paid = r.e.teams.length*PRICE;
     let statusTxt, winTxt;
@@ -689,6 +718,51 @@ function showBkTip(b){
 document.addEventListener("click",hideBkTip);
 window.addEventListener("resize",hideBkTip);
 document.querySelector(".bracket-scroll").addEventListener("scroll",hideBkTip);
+
+// ---------- ROAD-TO-FINAL POPUP (POC) ----------
+// Walk a team forward through the bracket: each round's opponent + result (advances hypothetically while pending)
+function roadOf(teamName){
+  const target=norm(teamName);
+  let cur=null, side=null;
+  for(const m of R32){ if(norm(state.r32[m.n].top)===target){cur=m.n;side="top";break;} if(norm(state.r32[m.n].bot)===target){cur=m.n;side="bot";break;} }
+  const steps=[]; if(cur===null) return steps;
+  while(true){
+    const p=state.pick[cur];
+    const result = !p ? "pending" : (p===side ? "won" : "lost");
+    const opp = teamAt(cur, side==="top"?"bot":"top");
+    const champ = (cur===104 && result==="won");
+    steps.push({round:roundOf(cur).label, match:cur, opp, result, champ});
+    if(cur===104 || result==="lost") break;
+    const nx=NEXT[cur]; if(!nx) break;
+    cur=nx.n; side=nx.side;
+  }
+  return steps;
+}
+function openRoad(teamName){
+  const s=statusOf(teamName), steps=roadOf(teamName), backers=backersOf(teamName);
+  const each = backers.length ? poolTotal()/backers.length : 0;
+  const rows = steps.map(st=>{
+    const dotCls = st.champ?"champ": st.result;
+    const dotTxt = st.champ?"★": st.result==="won"?"✓": st.result==="lost"?"✗":"•";
+    const oppTxt = st.champ ? "Champion! 🏆" : (st.opp ? "vs "+disp(st.opp) : "vs TBD");
+    const resTxt = st.champ?"Champ": st.result==="won"?"Won": st.result==="lost"?"Out":"Upcoming";
+    return `<div class="rstep"><span class="rdot ${dotCls}">${dotTxt}</span>`+
+      `<div class="rinfo"><div class="rround">${st.round} · M${st.match}</div><div class="ropp">${oppTxt}</div></div>`+
+      `<span class="rres ${st.champ?'champ':st.result}">${resTxt}</span></div>`;
+  }).join("");
+  document.getElementById("roadCard").innerHTML =
+    `<div class="modal-head"><span class="mh-flag">${flagOf(teamName)}</span><span class="mh-name">${esc(teamName)}</span><button class="mh-x" id="roadClose">✕</button></div>`+
+    `<div class="modal-sub">${esc(s.text)} · route to the final</div>`+
+    `<div class="road">${rows||'<div class="rstep">Not placed in the bracket yet.</div>'}</div>`+
+    `<div class="prize-box">If <b>${esc(teamName)}</b> goes all the way, its ${backers.length} backer${backers.length===1?'':'s'} split the RM${poolTotal()} pool:<br>`+
+    `<span class="pz-amt">RM${each.toFixed(0)}</span> each &nbsp;·&nbsp; <span style="color:var(--muted)">${esc(backers.join(", "))||'no backers'}</span></div>`;
+  document.getElementById("roadModal").classList.add("open");
+  document.getElementById("roadClose").onclick=closeRoad;
+}
+function closeRoad(){ document.getElementById("roadModal").classList.remove("open"); }
+document.getElementById("roadModal").addEventListener("click",e=>{ if(e.target.id==="roadModal") closeRoad(); });
+document.addEventListener("keydown",e=>{ if(e.key==="Escape") closeRoad(); });
+document.getElementById("standings").addEventListener("click",e=>{ const c=e.target.closest(".chip-x"); if(c) openRoad(c.dataset.team); });
 
 renderAll();
 loadOfficial();   // pull official results on load (works when hosted)
