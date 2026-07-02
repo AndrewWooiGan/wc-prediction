@@ -461,9 +461,13 @@ function applyOfficial(matches){
 }
 async function loadOfficial(opts){
   const el=document.getElementById("updated");
+  const btn=document.getElementById("refreshBtn");
+  const manual=opts&&opts.manual;
+  if(manual){ btn.disabled=true; btn.textContent="⏳ Fetching…"; }
+  let msg="";
   try{
     const res=await fetch("results.json?_="+Date.now(), {cache:"no-store"});
-    if(!res.ok){ if(opts&&opts.manual) el.textContent="No results file found yet."; return; }
+    if(!res.ok){ el.textContent="⚠️ results.json not found (is the site hosted?)"; msg="⚠️ Not found"; return; }
     const data=await res.json();
     const changed=applyOfficial(data.matches);
     if(changed){ save(); renderAll(); }
@@ -471,10 +475,15 @@ async function loadOfficial(opts){
       const d=new Date(data.updated);
       el.textContent="Auto-updated: "+d.toLocaleString()+" · "+(data.matches?data.matches.length:0)+" results";
     } else { el.textContent="Auto-update ready — no results recorded yet."; }
+    msg = changed ? "✓ Bracket updated" : "✓ Already up to date";
   }catch(e){
     el.textContent = (location.protocol==="file:")
-      ? "(Auto-update works once hosted on GitHub Pages.)"
-      : "Couldn't load results.json.";
+      ? "(Auto-update only works on the hosted site, not a local file.)"
+      : "⚠️ Couldn't load results.json.";
+    msg = (location.protocol==="file:") ? "Hosted site only" : "⚠️ Error";
+  } finally {
+    if(manual){ btn.textContent=msg||"🔄 Fetch latest results";
+      setTimeout(()=>{ btn.disabled=false; btn.textContent="🔄 Fetch latest results"; },2500); }
   }
 }
 document.getElementById("refreshBtn").onclick=()=>loadOfficial({manual:true});
