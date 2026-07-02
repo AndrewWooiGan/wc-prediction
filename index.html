@@ -137,6 +137,11 @@
   .pcard-foot{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:13px;color:var(--muted);margin-top:auto;padding-top:10px;border-top:1px solid var(--line);}
   .pcard-win{border-color:var(--gold);background:color-mix(in srgb,var(--gold) 9%,var(--panel2));
     box-shadow:0 0 0 1px var(--gold), 0 12px 32px -12px color-mix(in srgb,var(--gold) 60%,transparent);}
+  .pcard-elim{opacity:.7;}
+  .pcard-elim .pcard-name{text-decoration:line-through;text-decoration-color:var(--faint);}
+  .pcard-msg{font-size:12px;font-style:italic;color:var(--muted);line-height:1.4;
+    background:color-mix(in srgb,var(--red) 8%,transparent);border:1px dashed color-mix(in srgb,var(--red) 35%,transparent);
+    border-radius:9px;padding:8px 10px;}
 
   /* TABLES */
   table{width:100%;border-collapse:collapse;font-size:14px;}
@@ -492,8 +497,9 @@ function renderStandings(){
     return {e, statuses, hasChamp, aliveCount};
   }).sort((a,b)=> (b.hasChamp-a.hasChamp) || (b.aliveCount-a.aliveCount));
   rows.forEach((r,i)=>{
+    const eliminated = r.aliveCount===0 && !r.hasChamp;   // all teams knocked out
     const card=document.createElement("div");
-    card.className="pcard"+(r.hasChamp?" pcard-win":"");
+    card.className="pcard"+(r.hasChamp?" pcard-win":"")+(eliminated?" pcard-elim":"");
     const chips = r.statuses.map(({t,s})=>{
       let cls = s.champ?"champ": s.alive?(ch?"alive":"tbd"):"out";
       return `<span class="chip ${cls}" title="${esc(s.text)}">${disp(t)}</span>`;
@@ -501,16 +507,20 @@ function renderStandings(){
     const paid = r.e.teams.length*PRICE;
     let statusTxt, winTxt;
     if(ch){
-      statusTxt = r.hasChamp ? "✅ Picked champion" : "❌ No champion";
+      statusTxt = r.hasChamp ? "✅ Picked champion" : "☠️ Out";
       winTxt = r.hasChamp ? `<span class="money" style="color:var(--gold)">+RM${share.toFixed(0)}</span>` : `<span style="color:var(--muted)">RM0</span>`;
     } else {
-      statusTxt = `${r.aliveCount}/${r.e.teams.length} alive`;
+      statusTxt = eliminated ? "☠️ All teams out" : `${r.aliveCount}/${r.e.teams.length} alive`;
       winTxt = `<span style="color:var(--muted)">TBD</span>`;
     }
+    const msg = eliminated
+      ? `<div class="pcard-msg">Better luck next time — see you in 4 years! 👋 Or back more teams next round for more chances 😄</div>`
+      : "";
     card.innerHTML =
       `<div class="pcard-top"><span class="pcard-rank">${String(i+1).padStart(2,"0")}</span>`+
       `<span class="pcard-name">${esc(r.e.name)}</span><span class="pcard-paid">paid RM${paid}</span></div>`+
       `<div class="pcard-chips">${chips}</div>`+
+      msg+
       `<div class="pcard-foot"><span>${statusTxt}</span><span>${winTxt}</span></div>`;
     wrap.appendChild(card);
   });
