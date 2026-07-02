@@ -167,7 +167,20 @@
   .rres{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;flex:0 0 auto;}
   .rres.won{color:var(--green);} .rres.lost{color:var(--red);} .rres.pending{color:var(--faint);} .rres.champ{color:var(--gold);}
   .prize-box{background:color-mix(in srgb,var(--gold) 10%,transparent);border:1px solid color-mix(in srgb,var(--gold) 45%,transparent);border-radius:12px;padding:12px 14px;font-size:13px;line-height:1.5;}
-  .pz-amt{font-family:'Barlow Semi Condensed',sans-serif;font-weight:800;font-size:26px;color:var(--gold);}
+  .prize-box.out{background:color-mix(in srgb,var(--red) 9%,transparent);border-color:color-mix(in srgb,var(--red) 40%,transparent);color:var(--text);}
+  .prize-box.out b{color:var(--red);}
+  .pz-head{font-size:13px;color:var(--text);margin-bottom:8px;}
+  .pz-amt{font-family:'Barlow Semi Condensed',sans-serif;font-weight:800;font-size:22px;color:var(--gold);}
+  .pz-list{display:flex;flex-direction:column;gap:2px;}
+  .pz-row{display:flex;justify-content:space-between;gap:12px;font-size:13px;padding:3px 0;border-top:1px solid color-mix(in srgb,var(--gold) 22%,transparent);}
+  .pz-row:first-child{border-top:none;}
+  .pz-row .money{color:var(--gold);}
+  .mh-pill{flex:0 0 auto;font-family:'Barlow Semi Condensed',sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:.05em;font-size:10.5px;padding:3px 9px;border-radius:999px;border:1px solid var(--line-strong);color:var(--muted);}
+  .mh-pill.alive{color:var(--green);border-color:color-mix(in srgb,var(--green) 55%,transparent);background:color-mix(in srgb,var(--green) 14%,transparent);}
+  .mh-pill.out{color:var(--red);border-color:color-mix(in srgb,var(--red) 50%,transparent);background:color-mix(in srgb,var(--red) 10%,transparent);}
+  .mh-pill.champ{color:var(--gold);border-color:var(--gold);background:color-mix(in srgb,var(--gold) 16%,transparent);}
+  .tk-team{cursor:pointer;}
+  .tk-team:hover{color:var(--accent);text-decoration:underline;}
 
   /* TABLES */
   table{width:100%;border-collapse:collapse;font-size:14px;}
@@ -530,8 +543,8 @@ function renderStandings(){
     card.className="pcard"+(r.hasChamp?" pcard-win":"")+(eliminated?" pcard-elim":"");
     const chips = r.statuses.map(({t,s})=>{
       let cls = s.champ?"champ": s.alive?(ch?"alive":"tbd"):"out";
-      const clk = s.alive ? " chip-x" : "";
-      return `<span class="chip ${cls}${clk}" data-team="${esc(t)}" title="${s.alive?'Tap for road to final':esc(s.text)}">${disp(t)}</span>`;
+      const title = s.champ?"Tap for winning route" : s.alive?"Tap for road to the final" : "Tap for elimination route";
+      return `<span class="chip ${cls} chip-x" data-team="${esc(t)}" title="${title}">${disp(t)}</span>`;
     }).join("");
     const paid = r.e.teams.length*PRICE;
     let statusTxt, winTxt;
@@ -572,7 +585,7 @@ function renderTracker(){
       : s.alive?`<span class="chip alive">${esc(s.text)}</span>`
       : `<span class="chip out">${esc(s.text)}</span>`;
     const tr=document.createElement("tr");
-    tr.innerHTML=`<td class="name">${disp(c.name)}</td><td>${c.n}</td>`+
+    tr.innerHTML=`<td class="name"><span class="tk-team chip-x" data-team="${esc(c.name)}">${disp(c.name)}</span></td><td>${c.n}</td>`+
       `<td class="money">RM${ifChamp.toFixed(0)}</td><td>${badge}</td>`;
     tb.appendChild(tr);
   });
@@ -741,28 +754,58 @@ function roadOf(teamName){
 function openRoad(teamName){
   const s=statusOf(teamName), steps=roadOf(teamName), backers=backersOf(teamName);
   const each = backers.length ? poolTotal()/backers.length : 0;
+  const isOut = s.state==="out";
+  const isChamp = s.state==="champ" || s.champ;
+
   const rows = steps.map(st=>{
     const dotCls = st.champ?"champ": st.result;
     const dotTxt = st.champ?"★": st.result==="won"?"✓": st.result==="lost"?"✗":"•";
-    const oppTxt = st.champ ? "Champion! 🏆" : (st.opp ? "vs "+disp(st.opp) : "vs TBD");
+    const oppTxt = st.champ ? "Won the final — Champion! 🏆"
+      : st.result==="lost" ? (st.opp?"Lost to "+disp(st.opp):"Knocked out")
+      : (st.opp ? "vs "+disp(st.opp) : "vs TBD");
     const resTxt = st.champ?"Champ": st.result==="won"?"Won": st.result==="lost"?"Out":"Upcoming";
     return `<div class="rstep"><span class="rdot ${dotCls}">${dotTxt}</span>`+
       `<div class="rinfo"><div class="rround">${st.round} · M${st.match}</div><div class="ropp">${oppTxt}</div></div>`+
       `<span class="rres ${st.champ?'champ':st.result}">${resTxt}</span></div>`;
   }).join("");
+
+  // status pill
+  const pill = isChamp ? `<span class="mh-pill champ">Champion</span>`
+    : isOut ? `<span class="mh-pill out">Eliminated</span>`
+    : `<span class="mh-pill alive">Still in</span>`;
+
+  // payout / elimination box
+  let box;
+  if(isOut){
+    const gone = steps.find(x=>x.result==="lost");
+    box = `<div class="prize-box out"><b>Out of the running.</b> ${esc(teamName)} was knocked out in the ${gone?gone.round:"knockouts"}, `+
+      `so its ${backers.length} backer${backers.length===1?'':'s'} (${esc(backers.join(", "))||'none'}) can't win the pool from this pick.</div>`;
+  } else {
+    const list = backers.length
+      ? `<div class="pz-list">`+backers.map(b=>`<div class="pz-row"><span>${esc(b)}</span><span class="money">+RM${each.toFixed(0)}</span></div>`).join("")+`</div>`
+      : `<div class="pz-row" style="color:var(--muted)">No one backed this team.</div>`;
+    box = `<div class="prize-box">`+
+      `<div class="pz-head">${isChamp?"Winner! Pool split":"If they win it all"} — RM${poolTotal()} pool ÷ ${backers.length||0} = <span class="pz-amt">RM${each.toFixed(0)}</span> each</div>`+
+      list+`</div>`;
+  }
+
   document.getElementById("roadCard").innerHTML =
-    `<div class="modal-head"><span class="mh-flag">${flagOf(teamName)}</span><span class="mh-name">${esc(teamName)}</span><button class="mh-x" id="roadClose">✕</button></div>`+
-    `<div class="modal-sub">${esc(s.text)} · route to the final</div>`+
+    `<div class="modal-head"><span class="mh-flag">${flagOf(teamName)}</span><span class="mh-name">${esc(teamName)}</span>${pill}<button class="mh-x" id="roadClose" aria-label="Close">✕</button></div>`+
+    `<div class="modal-sub">${esc(s.text)} · ${isOut?"how they went out":"route to the final"}</div>`+
     `<div class="road">${rows||'<div class="rstep">Not placed in the bracket yet.</div>'}</div>`+
-    `<div class="prize-box">If <b>${esc(teamName)}</b> goes all the way, its ${backers.length} backer${backers.length===1?'':'s'} split the RM${poolTotal()} pool:<br>`+
-    `<span class="pz-amt">RM${each.toFixed(0)}</span> each &nbsp;·&nbsp; <span style="color:var(--muted)">${esc(backers.join(", "))||'no backers'}</span></div>`;
+    box;
   document.getElementById("roadModal").classList.add("open");
   document.getElementById("roadClose").onclick=closeRoad;
 }
 function closeRoad(){ document.getElementById("roadModal").classList.remove("open"); }
 document.getElementById("roadModal").addEventListener("click",e=>{ if(e.target.id==="roadModal") closeRoad(); });
 document.addEventListener("keydown",e=>{ if(e.key==="Escape") closeRoad(); });
-document.getElementById("standings").addEventListener("click",e=>{ const c=e.target.closest(".chip-x"); if(c) openRoad(c.dataset.team); });
+function delegateRoad(containerId){
+  const el=document.getElementById(containerId);
+  if(el) el.addEventListener("click",e=>{ const c=e.target.closest(".chip-x"); if(c && c.dataset.team) openRoad(c.dataset.team); });
+}
+delegateRoad("standings");
+delegateRoad("teamTracker");
 
 renderAll();
 loadOfficial();   // pull official results on load (works when hosted)
