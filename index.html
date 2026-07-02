@@ -3,113 +3,260 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>🏆 World Cup Champion Pool 2026</title>
+<title>World Cup Champion Pool 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,400;0,500;0,600;0,700;1,500&family=Barlow+Semi+Condensed:wght@500;600;700;800&display=swap" rel="stylesheet">
+<script>
+(function(){
+  try{var t=localStorage.getItem('wc_theme')||'dark';document.documentElement.setAttribute('data-theme',t);}
+  catch(e){document.documentElement.setAttribute('data-theme','dark');}
+  document.addEventListener('DOMContentLoaded',function(){
+    var btn=document.getElementById('themeToggle');
+    if(!btn)return;
+    function paint(){var d=document.documentElement.getAttribute('data-theme')==='dark';btn.textContent=d?'☀ Light':'☾ Dark';}
+    paint();
+    btn.addEventListener('click',function(){
+      var d=document.documentElement.getAttribute('data-theme')==='dark';
+      var nt=d?'light':'dark';
+      document.documentElement.setAttribute('data-theme',nt);
+      try{localStorage.setItem('wc_theme',nt);}catch(e){}
+      paint();
+    });
+  });
+})();
+</script>
+<script>
+(function(){
+  var T=new Date('2026-07-19T19:00:00Z').getTime();
+  function tick(){
+    var el=document.getElementById('countdown'); if(!el) return;
+    var d=T-Date.now();
+    if(d<=0){ el.textContent='FINAL DAY'; return; }
+    var dd=Math.floor(d/864e5), hh=Math.floor(d%864e5/36e5), mm=Math.floor(d%36e5/6e4), ss=Math.floor(d%6e4/1e3);
+    el.textContent=dd+'d : '+String(hh).padStart(2,'0')+'h : '+String(mm).padStart(2,'0')+'m : '+String(ss).padStart(2,'0')+'s';
+  }
+  document.addEventListener('DOMContentLoaded',function(){ tick(); setInterval(tick,1000); });
+})();
+</script>
 <style>
-  :root{
-    --bg:#0d1117; --panel:#161b22; --panel2:#1c2330; --line:#2b3340;
-    --text:#e6edf3; --muted:#9aa7b4; --gold:#ffd34d; --green:#3fb950;
-    --red:#f85149; --accent:#388bfd; --accent2:#7c5cff;
+  [data-theme="dark"]{
+    --bg:#080b14; --panel:#111726; --panel2:#161e30; --line:#232d44; --line-strong:#31405e;
+    --text:#eef2fb; --muted:#8b98b4; --faint:#59657e; --gold:#ffcf47; --green:#37d67a;
+    --red:#ff5c6a; --accent:#4c7dff; --accent2:#9b6bff; --accent-ink:#fff;
+    --glow-1:rgba(76,125,255,.20); --glow-2:rgba(155,107,255,.14);
+    --stripe:rgba(255,255,255,.02); --sheen:rgba(255,255,255,.06);
+    --shadow:0 14px 40px rgba(0,0,0,.5); --shadow-sm:0 6px 18px rgba(0,0,0,.35);
+    --chip:rgba(255,255,255,.045); --hover:rgba(255,255,255,.05);
+    --tip-bg:#0b0f1a; --input-bg:#0b1020; --placeholder:#5d6b86;
+  }
+  [data-theme="light"]{
+    --bg:#eef1f8; --panel:#ffffff; --panel2:#f5f7fc; --line:#e4e8f2; --line-strong:#d2d9e8;
+    --text:#141a29; --muted:#5e6a82; --faint:#9aa6bd; --gold:#c78a00; --green:#12a150;
+    --red:#e5484d; --accent:#2f5fff; --accent2:#7c4dff; --accent-ink:#fff;
+    --glow-1:rgba(47,95,255,.12); --glow-2:rgba(124,77,255,.08);
+    --stripe:rgba(31,45,80,.03); --sheen:rgba(255,255,255,.55);
+    --shadow:0 16px 40px rgba(31,45,80,.12); --shadow-sm:0 6px 16px rgba(31,45,80,.08);
+    --chip:rgba(20,30,60,.03); --hover:rgba(20,30,60,.035);
+    --tip-bg:#ffffff; --input-bg:#ffffff; --placeholder:#9aa6bd;
   }
   *{box-sizing:border-box}
-  body{margin:0;background:linear-gradient(160deg,#0d1117,#0c1320);color:var(--text);
-    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-    line-height:1.5;padding:24px;}
-  .wrap{max-width:1180px;margin:0 auto;}
-  nav{display:flex;gap:8px;justify-content:center;margin-bottom:16px;flex-wrap:wrap;}
-  nav a{text-decoration:none;padding:8px 16px;border-radius:20px;font-size:13px;font-weight:600;border:1px solid var(--line);}
-  nav a.active{background:var(--gold);border-color:var(--gold);color:#1a1400;}
-  nav a.inactive{background:var(--panel2);color:var(--text);}
-  header{text-align:center;margin-bottom:18px;}
-  h1{font-size:30px;margin:0 0 4px;}
-  .sub{color:var(--muted);font-size:14px;text-align:center;}
-  h2{font-size:18px;margin:28px 0 12px;border-left:4px solid var(--gold);padding-left:10px;}
-  .card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px;margin-bottom:18px;}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0;color:var(--text);
+    font-family:'Barlow',-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    line-height:1.55;padding:30px 20px 64px;min-height:100vh;
+    background:
+      radial-gradient(1200px 640px at 50% -14%, var(--glow-1), transparent 62%),
+      radial-gradient(780px 480px at 100% 2%, var(--glow-2), transparent 58%),
+      var(--bg);
+    background-attachment:fixed;
+    font-variant-numeric:tabular-nums;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:1200px;margin:0 auto;}
+
+  /* NAV */
+  nav{display:flex;gap:8px;justify-content:center;align-items:center;margin-bottom:26px;flex-wrap:wrap;}
+  nav a,.theme-toggle{text-decoration:none;padding:9px 18px;border-radius:999px;font-size:13px;font-weight:700;
+    font-family:'Barlow Semi Condensed',sans-serif;text-transform:uppercase;letter-spacing:.05em;
+    border:1px solid var(--line-strong);color:var(--text);background:var(--panel);cursor:pointer;transition:.15s;}
+  nav a:hover,.theme-toggle:hover{border-color:var(--accent);color:var(--text);}
+  nav a.active{background:linear-gradient(135deg,var(--accent),var(--accent2));border-color:transparent;color:#fff;box-shadow:0 8px 22px -6px var(--accent);}
+  .theme-toggle{font-size:12px;}
+
+  /* HERO SCOREBUG */
+  header{margin-bottom:26px;}
+  .hero{position:relative;border:1px solid var(--line);border-radius:20px;overflow:hidden;box-shadow:var(--shadow);
+    display:grid;grid-template-columns:1.35fr .95fr .85fr;
+    background:
+      repeating-linear-gradient(115deg, transparent 0 52px, var(--stripe) 52px 104px),
+      linear-gradient(115deg, color-mix(in srgb,var(--accent) 16%,var(--panel)) 0%, var(--panel) 44%, var(--panel) 60%, color-mix(in srgb,var(--accent2) 14%,var(--panel)) 100%);}
+  .hero::before{content:"";position:absolute;left:0;top:0;right:0;height:5px;z-index:2;
+    background:linear-gradient(90deg,var(--accent),var(--accent2),var(--gold));}
+  .hero::after{content:"";position:absolute;top:-20%;bottom:-20%;width:30%;pointer-events:none;z-index:1;
+    background:linear-gradient(90deg,transparent,var(--sheen),transparent);
+    animation:sheen 7s ease-in-out infinite;}
+  @keyframes sheen{0%,55%{transform:translateX(-160%) skewX(-16deg)}100%{transform:translateX(440%) skewX(-16deg)}}
+  .hero-main{padding:30px 28px 26px;}
+  .kicker{font-family:'Barlow Semi Condensed',sans-serif;font-weight:700;text-transform:uppercase;
+    letter-spacing:.16em;font-size:12.5px;color:var(--accent);margin:0 0 8px;}
+  h1{font-family:'Barlow Semi Condensed',sans-serif;font-weight:800;text-transform:uppercase;
+    letter-spacing:.005em;font-size:clamp(38px,5.6vw,60px);line-height:.92;margin:0 0 10px;}
+  .sub{color:var(--muted);font-size:14px;max-width:40ch;}
+  .hero-pool,.hero-champ{padding:24px;border-left:1px solid var(--line);display:flex;flex-direction:column;justify-content:center;gap:4px;position:relative;}
+  .hp-label,.hc-label{font-family:'Barlow Semi Condensed',sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:.12em;font-size:11.5px;color:var(--muted);}
+  .hp-value{font-family:'Barlow Semi Condensed',sans-serif;font-weight:800;line-height:1;font-size:clamp(44px,5.4vw,64px);
+    background:linear-gradient(135deg,var(--gold),#ff9d2f);-webkit-background-clip:text;background-clip:text;color:transparent;}
+  .hp-meta{font-size:12.5px;color:var(--muted);}
+  .hp-meta b{color:var(--text);}
+  .hc-value{font-family:'Barlow Semi Condensed',sans-serif;font-weight:800;font-size:clamp(24px,2.6vw,32px);line-height:1.05;text-transform:uppercase;margin-bottom:4px;}
+  .hc-count{font-family:'Barlow Semi Condensed',sans-serif;font-size:19px;font-weight:700;font-variant-numeric:tabular-nums;color:var(--text);line-height:1.1;}
+  .hc-sub{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;}
+  @media(max-width:860px){.hero{grid-template-columns:1fr}.hero-pool,.hero-champ{border-left:none;border-top:1px solid var(--line);padding:16px 24px;}}
+
+  @keyframes rise{from{transform:translateY(10px)}to{transform:none}}
+  .hero{animation:rise .5s ease both;}
+  .card{animation:rise .55s ease both;}
+
+  /* SECTION HEADS */
+  h2{font-family:'Barlow Semi Condensed',sans-serif;font-weight:800;text-transform:uppercase;
+    letter-spacing:.03em;font-size:23px;margin:38px 0 15px;display:flex;align-items:center;gap:12px;line-height:1;}
+  h2::before{content:"";width:6px;height:24px;border-radius:3px;
+    background:linear-gradient(180deg,var(--accent),var(--accent2));flex:0 0 auto;}
+
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:20px;margin-bottom:18px;box-shadow:var(--shadow-sm);}
+
+  /* PLAYER CARDS */
+  .players{display:grid;grid-template-columns:repeat(auto-fill,minmax(255px,1fr));gap:14px;}
+  .pcard{background:var(--panel2);border:1px solid var(--line);border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:10px;transition:.15s;}
+  .pcard:hover{transform:translateY(-2px);border-color:var(--line-strong);box-shadow:var(--shadow-sm);}
+  .pcard-top{display:flex;align-items:baseline;gap:10px;}
+  .pcard-rank{font-family:'Barlow Semi Condensed',sans-serif;font-weight:800;font-size:15px;color:var(--faint);flex:0 0 auto;}
+  .pcard-name{font-weight:700;font-size:16px;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+  .pcard-paid{font-size:12px;color:var(--muted);font-weight:600;white-space:nowrap;}
+  .pcard-chips{display:flex;flex-wrap:wrap;gap:5px;}
+  .pcard-chips .chip{margin:0;}
+  .pcard-foot{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:13px;color:var(--muted);margin-top:auto;padding-top:10px;border-top:1px solid var(--line);}
+  .pcard-win{border-color:var(--gold);background:color-mix(in srgb,var(--gold) 9%,var(--panel2));
+    box-shadow:0 0 0 1px var(--gold), 0 12px 32px -12px color-mix(in srgb,var(--gold) 60%,transparent);}
+
+  /* TABLES */
   table{width:100%;border-collapse:collapse;font-size:14px;}
-  th,td{padding:10px 12px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top;}
-  th{color:var(--muted);font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:.5px;}
+  th,td{padding:12px 14px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top;}
+  th{color:var(--muted);font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.08em;
+    font-family:'Barlow Semi Condensed',sans-serif;}
+  tbody tr{transition:background .12s;}
+  tbody tr:hover{background:var(--hover);}
   tbody tr:last-child td{border-bottom:none;}
-  .name{font-weight:600;}
-  .chip{display:inline-block;padding:2px 9px;border-radius:14px;font-size:12.5px;margin:2px 4px 2px 0;border:1px solid var(--line);}
-  .chip.alive{background:rgba(63,185,80,.14);border-color:rgba(63,185,80,.5);color:#7ee787;}
-  .chip.out{color:var(--muted);text-decoration:line-through;opacity:.65;}
-  .chip.champ{background:rgba(255,211,77,.2);border-color:var(--gold);color:var(--gold);font-weight:700;}
+  .name{font-weight:700;}
+  .chip{display:inline-block;padding:3px 10px;border-radius:8px;font-size:12.5px;font-weight:600;margin:2px 5px 2px 0;
+    border:1px solid var(--line-strong);background:var(--chip);}
+  .chip.alive{background:color-mix(in srgb,var(--green) 16%,transparent);border-color:color-mix(in srgb,var(--green) 55%,transparent);color:var(--green);}
+  .chip.out{color:var(--muted);text-decoration:line-through;opacity:.6;}
+  .chip.champ{background:color-mix(in srgb,var(--gold) 20%,transparent);border-color:var(--gold);color:var(--gold);font-weight:800;}
   .chip.tbd{color:var(--text);}
-  .money{font-weight:700;}
-  .win-row{background:rgba(255,211,77,.10);}
-  .kpis{display:flex;gap:12px;flex-wrap:wrap;}
-  .kpi{flex:1;min-width:160px;background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:14px;text-align:center;}
-  .kpi .v{font-size:24px;font-weight:700;}
-  .kpi .l{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;}
+  .money{font-weight:700;font-variant-numeric:tabular-nums;}
+  .win-row{background:color-mix(in srgb,var(--gold) 11%,transparent) !important;
+    box-shadow:inset 4px 0 0 var(--gold);}
+
+  /* KPIs */
+  .kpis{display:flex;gap:14px;flex-wrap:wrap;}
+  .kpi{flex:1;min-width:150px;background:var(--panel2);border:1px solid var(--line);border-radius:12px;
+    padding:16px 16px 14px;text-align:center;position:relative;overflow:hidden;}
+  .kpi::before{content:"";position:absolute;left:0;right:0;top:0;height:3px;background:linear-gradient(90deg,var(--accent),var(--accent2));opacity:.8;}
+  .kpi .v{font-family:'Barlow Semi Condensed',sans-serif;font-size:34px;font-weight:800;line-height:1;font-variant-numeric:tabular-nums;}
+  .kpi .l{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;font-weight:600;margin-top:6px;}
   .kpi .v.gold{color:var(--gold);}
-  .controls{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:8px;}
-  button{background:var(--accent);color:#fff;border:none;border-radius:8px;padding:9px 16px;font-size:13px;font-weight:600;cursor:pointer;}
-  button.ghost{background:transparent;border:1px solid var(--line);color:var(--text);}
-  button:hover{filter:brightness(1.1);}
-  .note{font-size:12.5px;color:var(--muted);background:rgba(56,139,253,.08);border:1px solid rgba(56,139,253,.25);border-radius:8px;padding:10px 12px;}
-  /* Bracket */
+  .kpi.k-champ::before{background:linear-gradient(90deg,var(--gold),#ff9d2f);}
+
+  /* BUTTONS */
+  .controls{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:10px;}
+  button{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;border:none;border-radius:10px;
+    padding:10px 18px;font-size:13px;font-weight:700;cursor:pointer;font-family:'Barlow Semi Condensed',sans-serif;
+    text-transform:uppercase;letter-spacing:.04em;transition:.15s;box-shadow:0 6px 16px -6px var(--accent);}
+  button.ghost{background:var(--panel2);border:1px solid var(--line-strong);color:var(--text);box-shadow:none;}
+  button:hover{transform:translateY(-1px);filter:brightness(1.06);}
+  button.ghost:hover{border-color:var(--accent);}
+
+  .note{font-size:13px;color:var(--text);background:color-mix(in srgb,var(--accent) 8%,transparent);
+    border:1px solid color-mix(in srgb,var(--accent) 28%,transparent);border-radius:12px;padding:13px 15px;}
+  .note strong{color:var(--accent);}
+
+  /* BRACKET */
   .bracket-scroll{overflow-x:auto;padding-bottom:12px;}
-  .bracket{display:flex;gap:18px;min-width:1100px;}
-  .round{display:flex;flex-direction:column;justify-content:space-around;flex:1;min-width:150px;}
-  .round h4{margin:0 0 10px;font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;text-align:center;}
-  .match{background:var(--panel2);border:1px solid var(--line);border-radius:8px;margin:6px 0;overflow:hidden;}
-  .match .mno{font-size:9px;color:var(--muted);padding:2px 6px 0;}
-  .side{display:flex;align-items:center;gap:6px;padding:6px 8px;cursor:pointer;border-top:1px solid var(--line);font-size:13px;}
+  .bracket{display:flex;gap:16px;min-width:1120px;}
+  .round{display:flex;flex-direction:column;justify-content:space-around;flex:1;min-width:154px;}
+  .round h4{margin:0 0 12px;font-size:11px;color:var(--text);text-transform:uppercase;letter-spacing:.1em;
+    text-align:center;font-family:'Barlow Semi Condensed',sans-serif;font-weight:700;
+    background:var(--panel2);border:1px solid var(--line);border-radius:999px;padding:5px 10px;}
+  .match{background:var(--panel2);border:1px solid var(--line);border-radius:10px;margin:6px 0;overflow:hidden;transition:.12s;}
+  .match:hover{border-color:color-mix(in srgb,var(--accent) 55%,var(--line));box-shadow:0 4px 16px -8px var(--accent);}
+  .match .mno{font-size:9px;color:var(--faint);padding:3px 8px 0;font-weight:700;letter-spacing:.05em;text-transform:uppercase;}
+  .side{display:flex;align-items:center;gap:6px;padding:7px 9px;cursor:pointer;border-top:1px solid var(--line);font-size:13px;position:relative;}
   .side:first-of-type{border-top:none;}
-  .side:hover{background:rgba(255,255,255,.04);}
-  .side.win{background:rgba(63,185,80,.16);font-weight:700;}
+  .side:hover{background:var(--hover);}
+  .side.win{background:color-mix(in srgb,var(--accent) 18%,transparent);font-weight:700;box-shadow:inset 3px 0 0 var(--accent);}
   .side.backed{box-shadow:inset 3px 0 0 var(--accent2);}
-  .side input{flex:1;background:transparent;border:none;color:var(--text);font-size:13px;padding:2px 0;outline:none;min-width:0;}
-  .side input::placeholder{color:#5b6776;font-style:italic;}
+  .side.win.backed{box-shadow:inset 3px 0 0 var(--accent);}
+  .side .fl{flex:0 0 auto;width:20px;text-align:center;font-size:14px;line-height:1;}
+  .side input{flex:1;background:transparent;border:none;color:var(--text);font-size:13px;font-family:inherit;padding:2px 0;outline:none;min-width:0;}
+  .side input::placeholder{color:var(--placeholder);font-style:italic;}
   .side .tname{flex:1;}
-  .side .tname.empty{color:#5b6776;font-style:italic;}
-  .side .pick{flex:0 0 auto;width:24px;height:24px;border-radius:50%;border:1px solid var(--line);background:transparent;color:var(--muted);font-size:13px;line-height:1;cursor:pointer;padding:0;display:flex;align-items:center;justify-content:center;}
+  .side .tname.empty{color:var(--placeholder);font-style:italic;}
+  .side .pick{flex:0 0 auto;width:24px;height:24px;border-radius:50%;border:1px solid var(--line-strong);background:transparent;color:var(--muted);font-size:13px;line-height:1;cursor:pointer;padding:0;display:flex;align-items:center;justify-content:center;transition:.12s;}
   .side .pick:hover:not(:disabled){border-color:var(--green);color:var(--green);}
-  .side .pick.on{background:var(--green);border-color:var(--green);color:#06210d;font-weight:700;}
-  .side .pick:disabled{opacity:.25;cursor:not-allowed;}
-  .side{position:relative;}
-  .bk{flex:0 0 auto;background:rgba(124,92,255,.18);border:1px solid var(--accent2);color:#c7b6ff;
-    font-size:10px;font-weight:700;border-radius:10px;padding:1px 6px;cursor:pointer;user-select:none;white-space:nowrap;}
-  #bkTip{position:fixed;z-index:9999;display:none;background:#0b0f16;border:1px solid var(--accent2);
-    color:var(--text);font-size:12px;padding:7px 10px;border-radius:8px;max-width:220px;line-height:1.45;
-    box-shadow:0 6px 20px rgba(0,0,0,.6);}
-  #bkTip b{color:#c7b6ff;}
+  .side .pick.on{background:var(--green);border-color:var(--green);color:#04240f;font-weight:800;}
+  .side .pick:disabled{opacity:.22;cursor:not-allowed;}
+  .bk{flex:0 0 auto;background:color-mix(in srgb,var(--accent2) 18%,transparent);border:1px solid color-mix(in srgb,var(--accent2) 60%,transparent);color:var(--accent2);
+    font-size:10px;font-weight:800;border-radius:8px;padding:1px 7px;cursor:pointer;user-select:none;white-space:nowrap;}
+  #bkTip{position:fixed;z-index:9999;display:none;background:var(--tip-bg);border:1px solid var(--accent2);
+    color:var(--text);font-size:12px;padding:8px 11px;border-radius:10px;max-width:220px;line-height:1.45;
+    box-shadow:var(--shadow);}
+  #bkTip b{color:var(--accent2);}
   .champ-box{display:flex;flex-direction:column;justify-content:center;}
-  .champ-card{background:rgba(255,211,77,.12);border:1px solid var(--gold);border-radius:10px;padding:16px;text-align:center;}
-  .champ-card .t{font-size:18px;font-weight:700;color:var(--gold);}
-  .legend{font-size:12px;color:var(--muted);margin-top:10px;}
-  .legend span{margin-right:16px;white-space:nowrap;}
-  .swatch{display:inline-block;width:10px;height:10px;border-radius:2px;vertical-align:middle;margin-right:4px;}
-  a.inline{color:var(--accent);}
-  @media(max-width:640px){body{padding:12px}h1{font-size:24px}}
+  .champ-card{background:color-mix(in srgb,var(--gold) 13%,transparent);border:1px solid var(--gold);border-radius:14px;padding:22px 16px;text-align:center;}
+  .champ-card.has{animation:champPulse 2.4s ease-in-out infinite;}
+  @keyframes champPulse{0%,100%{box-shadow:0 0 0 0 color-mix(in srgb,var(--gold) 40%,transparent)}50%{box-shadow:0 0 26px 3px color-mix(in srgb,var(--gold) 40%,transparent)}}
+  .champ-card .t{font-family:'Barlow Semi Condensed',sans-serif;font-size:24px;font-weight:800;color:var(--gold);text-transform:uppercase;line-height:1.05;}
+
+  .legend{font-size:12px;color:var(--muted);margin-top:12px;display:flex;flex-wrap:wrap;gap:8px 16px;}
+  .legend span{white-space:nowrap;}
+  .swatch{display:inline-block;width:10px;height:10px;border-radius:3px;vertical-align:middle;margin-right:5px;}
+  a.inline{color:var(--accent);font-weight:600;}
+  .footnote{color:var(--muted);font-size:12.5px;text-align:center;margin-top:26px;letter-spacing:.02em;}
+  @media(max-width:640px){body{padding:16px 12px 48px}.hero{padding:20px 18px}h2{font-size:20px}}
 </style>
 </head>
 <body>
 <div class="wrap">
   <nav>
-    <a href="index.html" class="active">🏆 Champion Pool</a>
-    <a href="group-stage.html" class="inactive">📊 Group Stage Game</a>
-    <a href="/cdn-cgi/access/logout" class="inactive">🚪 Sign out</a>
+    <a href="index.html" class="active">Champion Pool</a>
+    <a href="group-stage.html">Group Stage</a>
+    <a href="/cdn-cgi/access/logout">Sign out</a>
+    <button type="button" class="theme-toggle" id="themeToggle">Theme</button>
   </nav>
   <header>
-    <h1>🏆 World Cup Champion Pool 2026</h1>
-    <div class="sub">RM20 per team · up to 3 teams each · whoever picks the champion splits the whole pool</div>
+    <div class="hero">
+      <div class="hero-main">
+        <p class="kicker">FIFA World Cup 2026 · Friends Pool</p>
+        <h1>Champion<br>Pool</h1>
+        <div class="sub">RM20 per team · up to 3 teams each · whoever picks the champion splits the whole pool.</div>
+      </div>
+      <div class="hero-pool">
+        <div class="hp-label">Prize Pool</div>
+        <div class="hp-value" id="kPool">–</div>
+        <div class="hp-meta"><b id="kPlayers">–</b> players · <b id="kTeams">–</b> teams × RM20</div>
+      </div>
+      <div class="hero-champ">
+        <div class="hc-label">Champion</div>
+        <div class="hc-value" id="kChamp">TBD</div>
+        <div class="hc-count" id="countdown">–</div>
+        <div class="hc-sub">to the final · 19 Jul · New Jersey</div>
+      </div>
+    </div>
   </header>
 
+  <h2>Standings &amp; Payout</h2>
   <div class="card">
-    <div class="kpis">
-      <div class="kpi"><div class="v" id="kPlayers">–</div><div class="l">Players</div></div>
-      <div class="kpi"><div class="v" id="kTeams">–</div><div class="l">Team slots × RM20</div></div>
-      <div class="kpi"><div class="v gold" id="kPool">–</div><div class="l">Prize pool</div></div>
-      <div class="kpi"><div class="v" id="kChamp">TBD</div><div class="l">Champion</div></div>
-    </div>
-  </div>
-
-  <h2>🏅 Standings &amp; payout</h2>
-  <div class="card">
-    <table id="standings">
-      <thead><tr><th>Player</th><th>Teams</th><th>Paid</th><th>Status</th><th>Winnings</th></tr></thead>
-      <tbody></tbody>
-    </table>
+    <div class="players" id="standings"></div>
     <div class="legend">
       <span><span class="swatch" style="background:#3fb950"></span>still alive</span>
       <span><span class="swatch" style="background:#ffd34d"></span>champion</span>
@@ -118,7 +265,7 @@
     </div>
   </div>
 
-  <h2>🎯 Team tracker</h2>
+  <h2>Team Tracker</h2>
   <div class="card">
     <table id="teamTracker">
       <thead><tr><th>Team</th><th>Backers</th><th>If champion, pool each</th><th>Status</th></tr></thead>
@@ -126,16 +273,16 @@
     </table>
   </div>
 
-  <h2>⚔️ Knockout bracket — trace the route</h2>
+  <h2>Knockout Bracket — Trace the Route</h2>
   <div class="card">
     <div class="controls">
-      <button class="ghost" id="refreshBtn">🔄 Fetch latest results</button>
-      <button class="ghost" id="saveBtn">💾 Save</button>
-      <button class="ghost" id="resetBtn">↺ Reset bracket</button>
+      <button class="ghost" id="refreshBtn">Fetch latest results</button>
+      <button class="ghost" id="saveBtn">Save</button>
+      <button class="ghost" id="resetBtn">Reset bracket</button>
       <span class="sub" style="margin:0" id="updated"></span>
     </div>
     <div class="note" style="margin-bottom:14px">
-      Results update <strong>automatically</strong> once a day from official data (and you can hit <em>🔄 Fetch latest results</em> anytime). You can also record a result yourself: click the <strong>○</strong> button beside the winning team — it turns into a green ✓ and advances automatically through to the <strong>Final</strong>, which sets the champion and payout above. (Official results take priority on the next refresh.) Cross-check on the <a class="inline" href="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/standings" target="_blank">official bracket</a>.
+      Results update <strong>automatically</strong> once a day from official data (and you can hit <em>Fetch latest results</em> anytime). You can also record a result yourself: click the <strong>○</strong> button beside the winning team — it turns into a green ✓ and advances automatically through to the <strong>Final</strong>, which sets the champion and payout above. (Official results take priority on the next refresh.) Cross-check on the <a class="inline" href="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/standings" target="_blank">official bracket</a>.
     </div>
     <div class="bracket-scroll">
       <div class="bracket" id="bracket"></div>
@@ -143,7 +290,7 @@
     <div class="legend"><span><span class="swatch" style="background:#7c5cff"></span>a team someone backed in the pool</span></div>
   </div>
 
-  <div class="sub" style="margin-top:24px">截止：BEFORE ROUND 32 · 猜中冠军者平分奖金池 · 纯娱乐 😄</div>
+  <div class="footnote">截止：BEFORE ROUND 32 · 猜中冠军者平分奖金池 · 纯娱乐 😄</div>
 </div>
 
 <div id="bkTip"></div>
@@ -212,6 +359,11 @@ const ALIAS = {holland:"netherlands", netherland:"netherlands", netherlands:"net
   "democratic republic of the congo":"dr congo", "dr congo (kinshasa)":"dr congo",
   "czechia":"czechia", "czech republic":"czechia", "czech":"czechia"};
 function norm(s){ if(!s) return ""; let k=s.trim().toLowerCase(); return ALIAS[k]||k; }
+
+// Flag emoji by normalized team name
+const FLAG={"mexico":"🇲🇽","south korea":"🇰🇷","czechia":"🇨🇿","south africa":"🇿🇦","switzerland":"🇨🇭","canada":"🇨🇦","bosnia":"🇧🇦","qatar":"🇶🇦","brazil":"🇧🇷","morocco":"🇲🇦","haiti":"🇭🇹","scotland":"🏴󠁧󠁢󠁳󠁣󠁴󠁿","usa":"🇺🇸","australia":"🇦🇺","türkiye":"🇹🇷","paraguay":"🇵🇾","germany":"🇩🇪","côte d'ivoire":"🇨🇮","ecuador":"🇪🇨","curaçao":"🇨🇼","netherlands":"🇳🇱","japan":"🇯🇵","tunisia":"🇹🇳","sweden":"🇸🇪","belgium":"🇧🇪","egypt":"🇪🇬","iran":"🇮🇷","new zealand":"🇳🇿","spain":"🇪🇸","uruguay":"🇺🇾","cape verde":"🇨🇻","saudi arabia":"🇸🇦","france":"🇫🇷","norway":"🇳🇴","senegal":"🇸🇳","iraq":"🇮🇶","argentina":"🇦🇷","austria":"🇦🇹","algeria":"🇩🇿","jordan":"🇯🇴","portugal":"🇵🇹","colombia":"🇨🇴","dr congo":"🇨🇩","uzbekistan":"🇺🇿","england":"🏴󠁧󠁢󠁥󠁮󠁧󠁿","ghana":"🇬🇭","croatia":"🇭🇷","panama":"🇵🇦"};
+const flagOf=t=>FLAG[norm(t)]||"";
+const disp=t=>{const f=flagOf(t);return (f?f+"\u00a0":"")+esc(t);};
 
 // ---------- BRACKET STRUCTURE (official 2026 feeder map) ----------
 const R32 = [
@@ -310,25 +462,26 @@ function renderTop(){
   document.getElementById("kTeams").textContent = totalSlots();
   document.getElementById("kPool").textContent = "RM"+poolTotal();
   const ch = champion();
-  document.getElementById("kChamp").textContent = ch ? ch : "TBD";
+  document.getElementById("kChamp").textContent = ch ? ((flagOf(ch)?flagOf(ch)+" ":"")+ch) : "TBD";
 }
 
 function renderStandings(){
   const ch = champion();
   const winners = ch ? ENTRIES.filter(e=>e.teams.some(t=>norm(t)===norm(ch))) : [];
   const share = winners.length ? poolTotal()/winners.length : 0;
-  const tb = document.querySelector("#standings tbody"); tb.innerHTML="";
+  const wrap = document.getElementById("standings"); wrap.innerHTML="";
   const rows = ENTRIES.map(e=>{
     const statuses = e.teams.map(t=>({t, s:statusOf(t)}));
     const hasChamp = ch && e.teams.some(t=>norm(t)===norm(ch));
     const aliveCount = statuses.filter(x=>x.s.alive).length;
     return {e, statuses, hasChamp, aliveCount};
   }).sort((a,b)=> (b.hasChamp-a.hasChamp) || (b.aliveCount-a.aliveCount));
-  rows.forEach(r=>{
-    const tr=document.createElement("tr"); if(r.hasChamp) tr.className="win-row";
+  rows.forEach((r,i)=>{
+    const card=document.createElement("div");
+    card.className="pcard"+(r.hasChamp?" pcard-win":"");
     const chips = r.statuses.map(({t,s})=>{
       let cls = s.champ?"champ": s.alive?(ch?"alive":"tbd"):"out";
-      return `<span class="chip ${cls}" title="${esc(s.text)}">${esc(t)}</span>`;
+      return `<span class="chip ${cls}" title="${esc(s.text)}">${disp(t)}</span>`;
     }).join("");
     const paid = r.e.teams.length*PRICE;
     let statusTxt, winTxt;
@@ -339,9 +492,12 @@ function renderStandings(){
       statusTxt = `${r.aliveCount}/${r.e.teams.length} alive`;
       winTxt = `<span style="color:var(--muted)">TBD</span>`;
     }
-    tr.innerHTML = `<td class="name">${esc(r.e.name)}</td><td>${chips}</td>`+
-      `<td class="money">RM${paid}</td><td>${statusTxt}</td><td>${winTxt}</td>`;
-    tb.appendChild(tr);
+    card.innerHTML =
+      `<div class="pcard-top"><span class="pcard-rank">${String(i+1).padStart(2,"0")}</span>`+
+      `<span class="pcard-name">${esc(r.e.name)}</span><span class="pcard-paid">paid RM${paid}</span></div>`+
+      `<div class="pcard-chips">${chips}</div>`+
+      `<div class="pcard-foot"><span>${statusTxt}</span><span>${winTxt}</span></div>`;
+    wrap.appendChild(card);
   });
   const note = document.getElementById("payoutNote");
   if(ch){
@@ -362,7 +518,7 @@ function renderTracker(){
       : s.alive?`<span class="chip alive">${esc(s.text)}</span>`
       : `<span class="chip out">${esc(s.text)}</span>`;
     const tr=document.createElement("tr");
-    tr.innerHTML=`<td class="name">${esc(c.name)}</td><td>${c.n}</td>`+
+    tr.innerHTML=`<td class="name">${disp(c.name)}</td><td>${c.n}</td>`+
       `<td class="money">RM${ifChamp.toFixed(0)}</td><td>${badge}</td>`;
     tb.appendChild(tr);
   });
@@ -377,13 +533,14 @@ function sideHTML(n, side){
   const backers = backed ? backersOf(t) : [];
   const tip = backers.length ? ` title="Backed by: ${esc(backers.join(", "))}"` : "";
   let teamPart;
+  const fl = flagOf(t);
   if(isR32(n)){
     const slot = R32.find(m=>m.n===n)[side];
     const val = state.r32[n][side];
-    teamPart = `<input list="wcTeams" data-n="${n}" data-side="${side}" value="${esc(val)}" placeholder="${esc(slot)}"${tip} />`;
+    teamPart = `<span class="fl">${fl}</span><input list="wcTeams" data-n="${n}" data-side="${side}" value="${esc(val)}" placeholder="${esc(slot)}"${tip} />`;
   } else {
     const label = t || ("Winner M"+FEED[n][side==="top"?0:1]);
-    teamPart = `<span class="tname${t?"":" empty"}"${tip}>${esc(label)}</span>`;
+    teamPart = (t?`<span class="fl">${fl}</span>`:"")+`<span class="tname${t?"":" empty"}"${tip}>${esc(label)}</span>`;
   }
   const badge = backers.length
     ? `<span class="bk" data-bk="${esc(backers.join(", "))}" title="Backed by: ${esc(backers.join(", "))}">👤${backers.length}</span>`
@@ -404,8 +561,8 @@ function renderBracket(){
   });
   const ch=champion();
   const col=document.createElement("div"); col.className="round champ-box"; col.style.minWidth="150px";
-  col.innerHTML=`<h4>Champion</h4><div class="champ-card"><div style="font-size:11px;color:var(--muted)">🏆</div>`+
-    `<div class="t">${ch?esc(ch):"TBD"}</div></div>`;
+  col.innerHTML=`<h4>Champion</h4><div class="champ-card${ch?" has":""}"><div style="font-size:20px">🏆</div>`+
+    `<div class="t">${ch?disp(ch):"TBD"}</div></div>`;
   wrap.appendChild(col);
 
   // explicit winner buttons
@@ -437,7 +594,7 @@ function renderBracket(){
 function esc(s){ return String(s==null?"":s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
 function renderAll(){ renderTop(); renderStandings(); renderTracker(); renderBracket(); }
 
-document.getElementById("saveBtn").onclick=()=>{ save(); const b=document.getElementById("saveBtn"); b.textContent="✓ Saved"; setTimeout(()=>b.textContent="💾 Save",1500); };
+document.getElementById("saveBtn").onclick=()=>{ save(); const b=document.getElementById("saveBtn"); b.textContent="✓ Saved"; setTimeout(()=>b.textContent="Save",1500); };
 document.getElementById("resetBtn").onclick=()=>{ if(confirm("Reset to the official Round-of-32 teams and clear all winners?")){ state=blank(); save(); renderAll(); } };
 
 // ---------- AUTO-UPDATE from results.json (written daily by GitHub Action) ----------
@@ -463,7 +620,7 @@ async function loadOfficial(opts){
   const el=document.getElementById("updated");
   const btn=document.getElementById("refreshBtn");
   const manual=opts&&opts.manual;
-  if(manual){ btn.disabled=true; btn.textContent="⏳ Fetching…"; }
+  if(manual){ btn.disabled=true; btn.textContent="Fetching…"; }
   let msg="";
   try{
     const res=await fetch("results.json?_="+Date.now(), {cache:"no-store"});
@@ -482,8 +639,8 @@ async function loadOfficial(opts){
       : "⚠️ Couldn't load results.json.";
     msg = (location.protocol==="file:") ? "Hosted site only" : "⚠️ Error";
   } finally {
-    if(manual){ btn.textContent=msg||"🔄 Fetch latest results";
-      setTimeout(()=>{ btn.disabled=false; btn.textContent="🔄 Fetch latest results"; },2500); }
+    if(manual){ btn.textContent=msg||"Fetch latest results";
+      setTimeout(()=>{ btn.disabled=false; btn.textContent="Fetch latest results"; },2500); }
   }
 }
 document.getElementById("refreshBtn").onclick=()=>loadOfficial({manual:true});
