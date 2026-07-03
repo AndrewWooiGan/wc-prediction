@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-03T18:00:37.100Z",
+  "updated": "2026-07-03T18:15:25.792Z",
   "source": "football-data.org",
   "matches": [
     {
@@ -396,11 +396,14 @@
   "upcoming": [
     {
       "date": "2026-07-03T18:00:00Z",
-      "status": "TIMED",
+      "status": "IN_PLAY",
       "stage": "LAST_32",
       "home": "Australia",
       "away": "Egypt",
-      "score": null
+      "score": {
+        "h": 0,
+        "a": 0
+      }
     },
     {
       "date": "2026-07-03T22:00:00Z",
