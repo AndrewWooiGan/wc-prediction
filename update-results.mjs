@@ -32,9 +32,16 @@ try {
     }))
     .filter(m => m.home && m.away && m.winner);
 
-  const out = { updated: new Date().toISOString(), source: "football-data.org", matches };
+  const nm = m => (m && (m.name || m.shortName)) || "";
+  const upcoming = (data.matches || [])
+    .filter(m => ["SCHEDULED","TIMED","IN_PLAY","PAUSED"].includes(m.status) && m.utcDate)
+    .map(m => ({ date: m.utcDate, status: m.status, stage: m.stage || "", home: nm(m.homeTeam), away: nm(m.awayTeam) }))
+    .filter(m => m.home && m.away)
+    .sort((a,b) => new Date(a.date) - new Date(b.date));
+
+  const out = { updated: new Date().toISOString(), source: "football-data.org", matches, upcoming };
   writeFileSync(OUT, JSON.stringify(out, null, 2) + "\n");
-  console.log(`Wrote ${matches.length} finished matches to ${OUT}`);
+  console.log(`Wrote ${matches.length} finished + ${upcoming.length} upcoming matches to ${OUT}`);
 } catch (e) {
   keep(null, String(e));
 }

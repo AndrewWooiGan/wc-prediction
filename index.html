@@ -182,6 +182,17 @@
   .tk-team{cursor:pointer;}
   .tk-team:hover{color:var(--accent);text-decoration:underline;}
 
+  /* UPCOMING (next 24h) */
+  .upc{display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;padding:12px 0;border-bottom:0.5px solid var(--line);}
+  .upc:last-child{border-bottom:none;}
+  .upc.backed{box-shadow:inset 3px 0 0 var(--accent2);padding-left:12px;}
+  .upc-time{flex:0 0 auto;min-width:104px;font-family:'Barlow Semi Condensed',sans-serif;font-weight:700;font-size:13px;color:var(--accent);text-transform:uppercase;letter-spacing:.03em;}
+  .upc-stage{display:block;font-size:10.5px;color:var(--muted);letter-spacing:.06em;font-weight:600;}
+  .upc-teams{flex:1;min-width:180px;font-size:15px;font-weight:600;display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+  .upc-vs{color:var(--muted);font-size:12px;font-weight:600;}
+  .upc-backers{flex:1 1 100%;font-size:12.5px;color:var(--muted);display:flex;flex-direction:column;gap:2px;}
+  .upc-backers b{color:var(--accent2);}
+
   /* TABLES */
   table{width:100%;border-collapse:collapse;font-size:14px;}
   th,td{padding:12px 14px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top;}
@@ -318,6 +329,11 @@
       </div>
     </div>
   </header>
+
+  <div id="upcomingWrap" style="display:none">
+    <h2>Kicking off within 24h</h2>
+    <div class="card"><div id="upcomingList"></div></div>
+  </div>
 
   <h2>Standings &amp; Payout</h2>
   <div class="card">
@@ -721,6 +737,34 @@ function applyOfficial(matches){
   }
   return any;
 }
+// ---------- UPCOMING MATCHES (next 24h) ----------
+const STAGE_LABEL={LAST_32:"Round of 32",LAST_16:"Round of 16",QUARTER_FINALS:"Quarter-final",QUARTER_FINAL:"Quarter-final",SEMI_FINALS:"Semi-final",SEMI_FINAL:"Semi-final",THIRD_PLACE:"Third place",FINAL:"Final",GROUP_STAGE:"Group stage"};
+function renderUpcoming(list){
+  const wrap=document.getElementById("upcomingWrap"), box=document.getElementById("upcomingList");
+  if(!wrap||!box) return;
+  const now=Date.now(), from=now-3*3600*1000, to=now+24*3600*1000;   // next 24h (+ games that kicked off in last 3h)
+  const items=(list||[]).filter(m=>{ const t=new Date(m.date).getTime(); return t>=from && t<=to; })
+    .sort((a,b)=>new Date(a.date)-new Date(b.date));
+  if(!items.length){ wrap.style.display="none"; return; }
+  box.innerHTML=items.map(m=>{
+    const d=new Date(m.date);
+    const when=d.toLocaleString([], {weekday:"short", hour:"2-digit", minute:"2-digit"});
+    const live = (m.status==="IN_PLAY"||m.status==="PAUSED");
+    const hB=backersOf(m.home), aB=backersOf(m.away), backed=(hB.length||aB.length);
+    const stage=STAGE_LABEL[m.stage]||m.stage||"";
+    const lines=[];
+    if(hB.length) lines.push(`<span><b>${esc(m.home)}</b> — ${esc(hB.join(", "))}</span>`);
+    if(aB.length) lines.push(`<span><b>${esc(m.away)}</b> — ${esc(aB.join(", "))}</span>`);
+    const backers = lines.length ? `<div class="upc-backers">${lines.join("")}</div>`
+      : `<div class="upc-backers" style="opacity:.6">No pool teams in this match</div>`;
+    return `<div class="upc${backed?" backed":""}">`+
+      `<div class="upc-time">${live?"● LIVE":esc(when)}<span class="upc-stage">${esc(stage)}</span></div>`+
+      `<div class="upc-teams"><span>${flagOf(m.home)} ${esc(m.home)}</span><span class="upc-vs">vs</span><span>${flagOf(m.away)} ${esc(m.away)}</span></div>`+
+      backers+`</div>`;
+  }).join("");
+  wrap.style.display="";
+}
+
 async function loadOfficial(opts){
   const el=document.getElementById("updated");
   const btn=document.getElementById("refreshBtn");
@@ -733,6 +777,7 @@ async function loadOfficial(opts){
     const data=await res.json();
     const changed=applyOfficial(data.matches);
     if(changed){ save(); renderAll(); }
+    renderUpcoming(data.upcoming);
     if(data.updated){
       const d=new Date(data.updated);
       el.textContent="Auto-updated: "+d.toLocaleString()+" · "+(data.matches?data.matches.length:0)+" results";
