@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-03T05:00:40.958Z",
+  "updated": "2026-07-03T05:15:23.681Z",
   "source": "football-data.org",
   "matches": [
     {
@@ -385,20 +385,15 @@
       "home": "Portugal",
       "away": "Croatia",
       "winner": "Portugal"
-    }
-  ],
-  "upcoming": [
+    },
     {
-      "date": "2026-07-03T03:00:00Z",
-      "status": "IN_PLAY",
       "stage": "LAST_32",
       "home": "Switzerland",
       "away": "Algeria",
-      "score": {
-        "h": 2,
-        "a": 0
-      }
-    },
+      "winner": "Switzerland"
+    }
+  ],
+  "upcoming": [
     {
       "date": "2026-07-03T18:00:00Z",
       "status": "TIMED",
