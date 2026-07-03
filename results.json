@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-03T01:15:23.479Z",
+  "updated": "2026-07-03T01:30:36.376Z",
   "source": "football-data.org",
   "matches": [
     {
@@ -379,6 +379,12 @@
       "home": "Spain",
       "away": "Austria",
       "winner": "Spain"
+    },
+    {
+      "stage": "LAST_32",
+      "home": "Portugal",
+      "away": "Croatia",
+      "winner": "Portugal"
     }
   ]
 }
