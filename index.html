@@ -225,6 +225,14 @@
   .note strong{color:var(--accent);}
 
   /* BRACKET */
+  .rtoggles{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px;align-items:center;}
+  .rtog-label{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;font-weight:600;margin-right:2px;width:100%;}
+  .rtog{background:var(--panel2);border:1px solid var(--line-strong);color:var(--text);border-radius:999px;
+    padding:6px 12px;font-size:12px;font-weight:700;font-family:'Barlow Semi Condensed',sans-serif;
+    text-transform:uppercase;letter-spacing:.04em;cursor:pointer;box-shadow:none;}
+  .rtog:hover{border-color:var(--accent);}
+  .rtog.off{opacity:.5;color:var(--muted);}
+  .rtog.act{border-style:dashed;color:var(--accent);}
   .bracket-scroll{overflow-x:auto;padding-bottom:12px;}
   .bracket{display:flex;gap:16px;min-width:1120px;}
   .round{display:flex;flex-direction:column;justify-content:space-around;flex:1;min-width:154px;}
@@ -343,6 +351,7 @@
     <div class="note" style="margin-bottom:14px">
       Results update <strong>automatically</strong> once a day from official data (and you can hit <em>Fetch latest results</em> anytime). You can also record a result yourself: click the <strong>○</strong> button beside the winning team — it turns into a green ✓ and advances automatically through to the <strong>Final</strong>, which sets the champion and payout above. (Official results take priority on the next refresh.) Cross-check on the <a class="inline" href="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/standings" target="_blank">official bracket</a>.
     </div>
+    <div class="rtoggles" id="roundToggles"></div>
     <div class="bracket-scroll">
       <div class="bracket" id="bracket"></div>
     </div>
@@ -619,9 +628,38 @@ function matchHTML(n){
   return `<div class="match"><div class="mno">Match ${n}</div>`+
     sideHTML(n,"top")+sideHTML(n,"bot")+`</div>`;
 }
+// ---- round show/hide (per-browser preference) ----
+let hiddenRounds = loadHidden();
+function loadHidden(){ try{ const s=localStorage.getItem("wc_hidden_rounds_v1"); if(s) return new Set(JSON.parse(s)); }catch(e){} return new Set(); }
+function saveHidden(){ localStorage.setItem("wc_hidden_rounds_v1", JSON.stringify([...hiddenRounds])); }
+function laterHasPick(idx){ for(let j=idx+1;j<ROUNDS.length;j++){ if(ROUNDS[j].matches.some(n=>state.pick[n])) return true; } return false; }
+function roundFinished(r,idx){ return r.matches.every(n=>state.pick[n]) || laterHasPick(idx); }
+function renderToggles(){
+  const el=document.getElementById("roundToggles"); if(!el) return;
+  const chips = ROUNDS.map(r=>{
+    const hidden=hiddenRounds.has(r.key);
+    return `<button class="rtog${hidden?" off":""}" data-r="${r.key}" title="${hidden?"Tap to show":"Tap to hide"} this column">${hidden?"➕":"✕"} ${r.label}</button>`;
+  }).join("");
+  el.innerHTML = `<span class="rtog-label">Tap a round to hide/show:</span>` + chips +
+    `<button class="rtog act" id="hideFinished">Hide finished</button>`+
+    `<button class="rtog act" id="showAllRounds">Show all</button>`;
+  el.querySelectorAll(".rtog[data-r]").forEach(b=>b.onclick=()=>{
+    const k=b.dataset.r; if(hiddenRounds.has(k)) hiddenRounds.delete(k); else hiddenRounds.add(k);
+    saveHidden(); renderToggles(); renderBracket();
+  });
+  el.querySelector("#hideFinished").onclick=()=>{
+    let n=0;
+    ROUNDS.forEach((r,idx)=>{ if(r.key!=="F" && roundFinished(r,idx) && !hiddenRounds.has(r.key)){ hiddenRounds.add(r.key); n++; } });
+    saveHidden(); renderToggles(); renderBracket();
+    const b=el.querySelector("#hideFinished");
+    if(b){ b.textContent = n?("Hid "+n+" round"+(n>1?"s":"")) : "No finished rounds yet"; setTimeout(()=>{ if(document.getElementById("hideFinished")) document.getElementById("hideFinished").textContent="Hide finished"; },1600); }
+  };
+  el.querySelector("#showAllRounds").onclick=()=>{ hiddenRounds.clear(); saveHidden(); renderToggles(); renderBracket(); };
+}
+
 function renderBracket(){
   const wrap=document.getElementById("bracket"); wrap.innerHTML="";
-  ROUNDS.forEach(r=>{
+  ROUNDS.filter(r=>!hiddenRounds.has(r.key)).forEach(r=>{
     const col=document.createElement("div"); col.className="round";
     col.innerHTML=`<h4>${r.label}</h4>`+r.matches.map(matchHTML).join("");
     wrap.appendChild(col);
@@ -659,7 +697,7 @@ function renderBracket(){
 
 // ---------- UTIL ----------
 function esc(s){ return String(s==null?"":s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
-function renderAll(){ renderTop(); renderStandings(); renderTracker(); renderBracket(); }
+function renderAll(){ renderTop(); renderStandings(); renderTracker(); renderToggles(); renderBracket(); }
 
 document.getElementById("saveBtn").onclick=()=>{ save(); const b=document.getElementById("saveBtn"); b.textContent="✓ Saved"; setTimeout(()=>b.textContent="Save",1500); };
 document.getElementById("resetBtn").onclick=()=>{ if(confirm("Reset to the official Round-of-32 teams and clear all winners?")){ state=blank(); save(); renderAll(); } };
