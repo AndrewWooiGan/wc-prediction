@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-03T23:15:22.317Z",
+  "updated": "2026-07-03T23:30:32.529Z",
   "source": "football-data.org",
   "matches": [
     {
@@ -402,7 +402,7 @@
       "away": "Cape Verde Islands",
       "score": {
         "h": 1,
-        "a": 0
+        "a": 1
       }
     },
     {
