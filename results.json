@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-03T18:15:25.792Z",
+  "updated": "2026-07-03T18:17:57.898Z",
   "source": "football-data.org",
   "matches": [
     {
@@ -402,7 +402,7 @@
       "away": "Egypt",
       "score": {
         "h": 0,
-        "a": 0
+        "a": 1
       }
     },
     {
