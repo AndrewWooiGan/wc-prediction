@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-03T22:45:21.618Z",
+  "updated": "2026-07-03T23:00:38.510Z",
   "source": "football-data.org",
   "matches": [
     {
@@ -396,7 +396,7 @@
   "upcoming": [
     {
       "date": "2026-07-03T22:00:00Z",
-      "status": "IN_PLAY",
+      "status": "PAUSED",
       "stage": "LAST_32",
       "home": "Argentina",
       "away": "Cape Verde Islands",
