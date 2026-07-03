@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-03T19:15:25.592Z",
+  "updated": "2026-07-03T19:30:36.228Z",
   "source": "football-data.org",
   "matches": [
     {
@@ -401,7 +401,7 @@
       "home": "Australia",
       "away": "Egypt",
       "score": {
-        "h": 0,
+        "h": 1,
         "a": 1
       }
     },
