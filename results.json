@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-03T03:36:08.656Z",
+  "updated": "2026-07-03T03:45:24.736Z",
   "source": "football-data.org",
   "matches": [
     {
@@ -393,63 +393,75 @@
       "status": "IN_PLAY",
       "stage": "LAST_32",
       "home": "Switzerland",
-      "away": "Algeria"
+      "away": "Algeria",
+      "score": {
+        "h": 1,
+        "a": 0
+      }
     },
     {
       "date": "2026-07-03T18:00:00Z",
       "status": "TIMED",
       "stage": "LAST_32",
       "home": "Australia",
-      "away": "Egypt"
+      "away": "Egypt",
+      "score": null
     },
     {
       "date": "2026-07-03T22:00:00Z",
       "status": "TIMED",
       "stage": "LAST_32",
       "home": "Argentina",
-      "away": "Cape Verde Islands"
+      "away": "Cape Verde Islands",
+      "score": null
     },
     {
       "date": "2026-07-04T01:30:00Z",
       "status": "TIMED",
       "stage": "LAST_32",
       "home": "Colombia",
-      "away": "Ghana"
+      "away": "Ghana",
+      "score": null
     },
     {
       "date": "2026-07-04T17:00:00Z",
       "status": "TIMED",
       "stage": "LAST_16",
       "home": "Canada",
-      "away": "Morocco"
+      "away": "Morocco",
+      "score": null
     },
     {
       "date": "2026-07-04T21:00:00Z",
       "status": "TIMED",
       "stage": "LAST_16",
       "home": "Paraguay",
-      "away": "France"
+      "away": "France",
+      "score": null
     },
     {
       "date": "2026-07-05T20:00:00Z",
       "status": "TIMED",
       "stage": "LAST_16",
       "home": "Brazil",
-      "away": "Norway"
+      "away": "Norway",
+      "score": null
     },
     {
       "date": "2026-07-06T00:00:00Z",
       "status": "TIMED",
       "stage": "LAST_16",
       "home": "Mexico",
-      "away": "England"
+      "away": "England",
+      "score": null
     },
     {
       "date": "2026-07-07T00:00:00Z",
       "status": "TIMED",
       "stage": "LAST_16",
       "home": "United States",
-      "away": "Belgium"
+      "away": "Belgium",
+      "score": null
     }
   ]
 }
