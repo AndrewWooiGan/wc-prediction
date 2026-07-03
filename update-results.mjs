@@ -35,7 +35,15 @@ try {
   const nm = m => (m && (m.name || m.shortName)) || "";
   const upcoming = (data.matches || [])
     .filter(m => ["SCHEDULED","TIMED","IN_PLAY","PAUSED"].includes(m.status) && m.utcDate)
-    .map(m => ({ date: m.utcDate, status: m.status, stage: m.stage || "", home: nm(m.homeTeam), away: nm(m.awayTeam) }))
+    .map(m => {
+      const live = m.status === "IN_PLAY" || m.status === "PAUSED";
+      const ft = (m.score && m.score.fullTime) ? m.score.fullTime : null;
+      return {
+        date: m.utcDate, status: m.status, stage: m.stage || "",
+        home: nm(m.homeTeam), away: nm(m.awayTeam),
+        score: live ? { h: (ft && ft.home != null) ? ft.home : 0, a: (ft && ft.away != null) ? ft.away : 0 } : null
+      };
+    })
     .filter(m => m.home && m.away)
     .sort((a,b) => new Date(a.date) - new Date(b.date));
 
