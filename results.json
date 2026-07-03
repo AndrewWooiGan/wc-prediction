@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-03T04:00:40.060Z",
+  "updated": "2026-07-03T04:15:26.992Z",
   "source": "football-data.org",
   "matches": [
     {
@@ -390,12 +390,12 @@
   "upcoming": [
     {
       "date": "2026-07-03T03:00:00Z",
-      "status": "PAUSED",
+      "status": "IN_PLAY",
       "stage": "LAST_32",
       "home": "Switzerland",
       "away": "Algeria",
       "score": {
-        "h": 1,
+        "h": 2,
         "a": 0
       }
     },
