@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-04T06:07:53.317Z",
+  "updated": "2026-07-04T06:15:26.378Z",
   "source": "football-data.org",
   "matches": [
     {
@@ -394,6 +394,12 @@
     },
     {
       "stage": "LAST_32",
+      "home": "Australia",
+      "away": "Egypt",
+      "winner": "Egypt"
+    },
+    {
+      "stage": "LAST_32",
       "home": "Argentina",
       "away": "Cape Verde Islands",
       "winner": "Argentina"
@@ -439,11 +445,35 @@
       "score": null
     },
     {
+      "date": "2026-07-06T19:00:00Z",
+      "status": "TIMED",
+      "stage": "LAST_16",
+      "home": "Portugal",
+      "away": "Spain",
+      "score": null
+    },
+    {
       "date": "2026-07-07T00:00:00Z",
       "status": "TIMED",
       "stage": "LAST_16",
       "home": "United States",
       "away": "Belgium",
+      "score": null
+    },
+    {
+      "date": "2026-07-07T16:00:00Z",
+      "status": "TIMED",
+      "stage": "LAST_16",
+      "home": "Argentina",
+      "away": "Egypt",
+      "score": null
+    },
+    {
+      "date": "2026-07-07T20:00:00Z",
+      "status": "TIMED",
+      "stage": "LAST_16",
+      "home": "Switzerland",
+      "away": "Colombia",
       "score": null
     }
   ]
