@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-04T02:45:21.552Z",
+  "updated": "2026-07-04T03:00:36.375Z",
   "source": "football-data.org",
   "matches": [
     {
@@ -407,7 +407,7 @@
       "home": "Colombia",
       "away": "Ghana",
       "score": {
-        "h": 1,
+        "h": 2,
         "a": 0
       }
     },
