@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-04T21:06:53.044Z",
+  "updated": "2026-07-04T21:15:23.399Z",
   "source": "football-data.org",
   "matches": [
     {
@@ -418,17 +418,6 @@
     }
   ],
   "upcoming": [
-    {
-      "date": "2026-07-04T21:00:00Z",
-      "status": "IN_PLAY",
-      "stage": "LAST_16",
-      "home": "Paraguay",
-      "away": "France",
-      "score": {
-        "h": 0,
-        "a": 0
-      }
-    },
     {
       "date": "2026-07-05T20:00:00Z",
       "status": "TIMED",
