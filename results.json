@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-04T01:30:33.160Z",
+  "updated": "2026-07-04T01:45:23.389Z",
   "source": "football-data.org",
   "matches": [
     {
@@ -402,11 +402,14 @@
   "upcoming": [
     {
       "date": "2026-07-04T01:30:00Z",
-      "status": "TIMED",
+      "status": "IN_PLAY",
       "stage": "LAST_32",
       "home": "Colombia",
       "away": "Ghana",
-      "score": null
+      "score": {
+        "h": 0,
+        "a": 0
+      }
     },
     {
       "date": "2026-07-04T17:00:00Z",
