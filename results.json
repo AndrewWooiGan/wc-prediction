@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-04T03:30:35.536Z",
+  "updated": "2026-07-04T03:45:23.209Z",
   "source": "football-data.org",
   "matches": [
     {
@@ -397,20 +397,15 @@
       "home": "Argentina",
       "away": "Cape Verde Islands",
       "winner": "Argentina"
-    }
-  ],
-  "upcoming": [
+    },
     {
-      "date": "2026-07-04T01:30:00Z",
-      "status": "IN_PLAY",
       "stage": "LAST_32",
       "home": "Colombia",
       "away": "Ghana",
-      "score": {
-        "h": 2,
-        "a": 0
-      }
-    },
+      "winner": "Colombia"
+    }
+  ],
+  "upcoming": [
     {
       "date": "2026-07-04T17:00:00Z",
       "status": "TIMED",
