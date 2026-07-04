@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-04T00:45:25.036Z",
+  "updated": "2026-07-04T01:00:42.499Z",
   "source": "football-data.org",
   "matches": [
     {
@@ -391,20 +391,15 @@
       "home": "Switzerland",
       "away": "Algeria",
       "winner": "Switzerland"
-    }
-  ],
-  "upcoming": [
+    },
     {
-      "date": "2026-07-03T22:00:00Z",
-      "status": "PAUSED",
       "stage": "LAST_32",
       "home": "Argentina",
       "away": "Cape Verde Islands",
-      "score": {
-        "h": 3,
-        "a": 2
-      }
-    },
+      "winner": "Argentina"
+    }
+  ],
+  "upcoming": [
     {
       "date": "2026-07-04T01:30:00Z",
       "status": "TIMED",
