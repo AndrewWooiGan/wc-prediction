@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-04T00:00:41.975Z",
+  "updated": "2026-07-04T00:15:23.354Z",
   "source": "football-data.org",
   "matches": [
     {
@@ -401,7 +401,7 @@
       "home": "Argentina",
       "away": "Cape Verde Islands",
       "score": {
-        "h": 1,
+        "h": 2,
         "a": 1
       }
     },
