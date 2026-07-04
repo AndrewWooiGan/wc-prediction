@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-04T19:00:37.016Z",
+  "updated": "2026-07-04T19:15:26.642Z",
   "source": "football-data.org",
   "matches": [
     {
@@ -409,20 +409,15 @@
       "home": "Colombia",
       "away": "Ghana",
       "winner": "Colombia"
-    }
-  ],
-  "upcoming": [
+    },
     {
-      "date": "2026-07-04T17:00:00Z",
-      "status": "IN_PLAY",
       "stage": "LAST_16",
       "home": "Canada",
       "away": "Morocco",
-      "score": {
-        "h": 0,
-        "a": 2
-      }
-    },
+      "winner": "Morocco"
+    }
+  ],
+  "upcoming": [
     {
       "date": "2026-07-04T21:00:00Z",
       "status": "TIMED",
