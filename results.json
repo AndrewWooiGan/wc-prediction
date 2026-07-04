@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-04T18:15:24.040Z",
+  "updated": "2026-07-04T18:30:35.652Z",
   "source": "football-data.org",
   "matches": [
     {
@@ -414,13 +414,13 @@
   "upcoming": [
     {
       "date": "2026-07-04T17:00:00Z",
-      "status": "PAUSED",
+      "status": "IN_PLAY",
       "stage": "LAST_16",
       "home": "Canada",
       "away": "Morocco",
       "score": {
         "h": 0,
-        "a": 0
+        "a": 1
       }
     },
     {
