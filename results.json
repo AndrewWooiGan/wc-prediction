@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-05T21:00:37.186Z",
+  "updated": "2026-07-05T21:15:24.092Z",
   "source": "football-data.org",
   "matches": [
     {
@@ -424,17 +424,6 @@
     }
   ],
   "upcoming": [
-    {
-      "date": "2026-07-05T20:00:00Z",
-      "status": "PAUSED",
-      "stage": "LAST_16",
-      "home": "Brazil",
-      "away": "Norway",
-      "score": {
-        "h": 0,
-        "a": 0
-      }
-    },
     {
       "date": "2026-07-06T00:00:00Z",
       "status": "TIMED",
