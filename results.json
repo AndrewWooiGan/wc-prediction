@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-05T06:00:35.894Z",
+  "updated": "2026-07-05T06:15:22.624Z",
   "source": "football-data.org",
   "matches": [
     {
@@ -415,9 +415,23 @@
       "home": "Canada",
       "away": "Morocco",
       "winner": "Morocco"
+    },
+    {
+      "stage": "LAST_16",
+      "home": "Paraguay",
+      "away": "France",
+      "winner": "France"
     }
   ],
   "upcoming": [
+    {
+      "date": "2026-07-05T20:00:00Z",
+      "status": "TIMED",
+      "stage": "LAST_16",
+      "home": "Brazil",
+      "away": "Norway",
+      "score": null
+    },
     {
       "date": "2026-07-06T00:00:00Z",
       "status": "TIMED",
@@ -456,6 +470,14 @@
       "stage": "LAST_16",
       "home": "Switzerland",
       "away": "Colombia",
+      "score": null
+    },
+    {
+      "date": "2026-07-09T20:00:00Z",
+      "status": "TIMED",
+      "stage": "QUARTER_FINALS",
+      "home": "France",
+      "away": "Morocco",
       "score": null
     }
   ]
