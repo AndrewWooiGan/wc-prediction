@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-05T20:00:35.102Z",
+  "updated": "2026-07-05T20:15:22.623Z",
   "source": "football-data.org",
   "matches": [
     {
@@ -426,11 +426,14 @@
   "upcoming": [
     {
       "date": "2026-07-05T20:00:00Z",
-      "status": "TIMED",
+      "status": "IN_PLAY",
       "stage": "LAST_16",
       "home": "Brazil",
       "away": "Norway",
-      "score": null
+      "score": {
+        "h": 0,
+        "a": 0
+      }
     },
     {
       "date": "2026-07-06T00:00:00Z",
