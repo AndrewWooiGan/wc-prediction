@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-05T22:08:25.808Z",
+  "updated": "2026-07-05T22:15:25.457Z",
   "source": "football-data.org",
   "matches": [
     {
@@ -421,6 +421,12 @@
       "home": "Paraguay",
       "away": "France",
       "winner": "France"
+    },
+    {
+      "stage": "LAST_16",
+      "home": "Brazil",
+      "away": "Norway",
+      "winner": "Norway"
     }
   ],
   "upcoming": [
