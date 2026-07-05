@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-05T05:30:34.523Z",
+  "updated": "2026-07-05T05:44:03.757Z",
   "source": "football-data.org",
   "matches": [
     {
@@ -415,23 +415,9 @@
       "home": "Canada",
       "away": "Morocco",
       "winner": "Morocco"
-    },
-    {
-      "stage": "LAST_16",
-      "home": "Paraguay",
-      "away": "France",
-      "winner": "France"
     }
   ],
   "upcoming": [
-    {
-      "date": "2026-07-05T20:00:00Z",
-      "status": "TIMED",
-      "stage": "LAST_16",
-      "home": "Brazil",
-      "away": "Norway",
-      "score": null
-    },
     {
       "date": "2026-07-06T00:00:00Z",
       "status": "TIMED",
