@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-05T23:30:34.633Z",
+  "updated": "2026-07-05T23:37:26.491Z",
   "source": "football-data.org",
   "matches": [
     {
@@ -430,14 +430,6 @@
     }
   ],
   "upcoming": [
-    {
-      "date": "2026-07-06T01:00:00Z",
-      "status": "SCHEDULED",
-      "stage": "LAST_16",
-      "home": "Mexico",
-      "away": "England",
-      "score": null
-    },
     {
       "date": "2026-07-06T19:00:00Z",
       "status": "TIMED",
