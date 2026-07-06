@@ -378,7 +378,7 @@
       <span class="sub" style="margin:0" id="updated"></span>
     </div>
     <div class="note" style="margin-bottom:14px">
-      Results update <strong>automatically</strong> once a day from official data (and you can hit <em>Fetch latest results</em> anytime). You can also record a result yourself: click the <strong>○</strong> button beside the winning team — it turns into a green ✓ and advances automatically through to the <strong>Final</strong>, which sets the champion and payout above. (Official results take priority on the next refresh.) Cross-check on the <a class="inline" href="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/standings" target="_blank">official bracket</a>.
+      Results update <strong>automatically</strong> from official data. You can also preview manually: click the <strong>○</strong> beside a team to advance it (turns green ✓). Tapping <em>Fetch latest results</em> <strong>rebuilds the bracket from official results and clears your manual picks</strong>. Cross-check on the <a class="inline" href="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/standings" target="_blank">official bracket</a>.
     </div>
     <div class="rtoggles" id="roundToggles"></div>
     <div class="bracket-scroll">
@@ -815,15 +815,16 @@ async function loadOfficial(opts){
     if(!res.ok){ el.textContent="⚠️ results.json not found (is the site hosted?)"; msg="⚠️ Not found"; return; }
     const data=await res.json();
     UPCOMING = data.upcoming || [];
+    if(manual){ state.pick = {}; }   // manual fetch = rebuild purely from official results (drop unofficial/manual picks)
     const changed=applyOfficial(data.matches);
-    if(changed){ save(); renderAll(); }
+    if(manual || changed){ save(); renderAll(); }
     renderTracker();
     renderUpcoming(data.upcoming);
     if(data.updated){
       const d=new Date(data.updated);
       el.textContent="Auto-updated: "+d.toLocaleString()+" · "+(data.matches?data.matches.length:0)+" results";
     } else { el.textContent="Auto-update ready — no results recorded yet."; }
-    msg = changed ? "✓ Bracket updated" : "✓ Already up to date";
+    msg = manual ? "✓ Synced to official" : (changed ? "✓ Bracket updated" : "✓ Already up to date");
   }catch(e){
     el.textContent = (location.protocol==="file:")
       ? "(Auto-update only works on the hosted site, not a local file.)"
