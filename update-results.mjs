@@ -38,10 +38,13 @@ try {
     .map(m => {
       const live = m.status === "IN_PLAY" || m.status === "PAUSED";
       const ft = (m.score && m.score.fullTime) ? m.score.fullTime : null;
+      const od = (m.odds && typeof m.odds.homeWin === "number")
+        ? { h: m.odds.homeWin, d: m.odds.draw, a: m.odds.awayWin } : null;   // null on free tier
       return {
         date: m.utcDate, status: m.status, stage: m.stage || "",
         home: nm(m.homeTeam), away: nm(m.awayTeam),
-        score: live ? { h: (ft && ft.home != null) ? ft.home : 0, a: (ft && ft.away != null) ? ft.away : 0 } : null
+        score: live ? { h: (ft && ft.home != null) ? ft.home : 0, a: (ft && ft.away != null) ? ft.away : 0 } : null,
+        odds: od
       };
     })
     .filter(m => m.home && m.away)

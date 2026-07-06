@@ -202,6 +202,9 @@
   .sec-toggle:hover{border-color:var(--accent);}
   .upc-backers{flex:1 1 100%;font-size:12.5px;color:var(--muted);display:flex;flex-direction:column;gap:2px;}
   .upc-backers b{color:var(--accent2);}
+  .upc-odds{flex:1 1 100%;font-size:12px;color:var(--muted);}
+  .upc-odds b{color:var(--text);font-weight:700;}
+  .tk-odds{font-size:11px;color:var(--muted);margin-top:3px;}
 
   /* TABLES */
   table{width:100%;border-collapse:collapse;font-size:14px;}
@@ -608,6 +611,15 @@ function renderStandings(){
   } else { note.innerHTML = "&nbsp;·&nbsp; champion not decided yet"; }
 }
 
+let UPCOMING=[];
+function teamNextOdds(t){
+  const k=norm(t);
+  for(const m of UPCOMING){ if(!m.odds) continue;
+    if(norm(m.home)===k) return {opp:m.away, odd:m.odds.h};
+    if(norm(m.away)===k) return {opp:m.home, odd:m.odds.a};
+  }
+  return null;
+}
 function renderTracker(){
   const counts = {};
   BACKED.forEach(t=>counts[norm(t)]={name:t, n:0});
@@ -619,9 +631,11 @@ function renderTracker(){
     let badge = s.champ?`<span class="chip champ">🏆 Champion</span>`
       : s.alive?`<span class="chip alive">${esc(s.text)}</span>`
       : `<span class="chip out">${esc(s.text)}</span>`;
+    const no = teamNextOdds(c.name);
+    const oddsLine = (no && s.alive) ? `<div class="tk-odds">next: vs ${esc(no.opp)} @ <b>${no.odd}</b></div>` : "";
     const tr=document.createElement("tr");
     tr.innerHTML=`<td class="name"><span class="tk-team chip-x" data-team="${esc(c.name)}">${disp(c.name)}</span></td><td>${c.n}</td>`+
-      `<td class="money">RM${ifChamp.toFixed(0)}</td><td>${badge}</td>`;
+      `<td class="money">RM${ifChamp.toFixed(0)}</td><td>${badge}${oddsLine}</td>`;
     tb.appendChild(tr);
   });
 }
@@ -656,8 +670,8 @@ function matchHTML(n){
 }
 // ---- round show/hide (per-browser preference) ----
 let hiddenRounds = loadHidden();
-function loadHidden(){ try{ const s=localStorage.getItem("wc_hidden_rounds_v1"); if(s) return new Set(JSON.parse(s)); }catch(e){} return new Set(); }
-function saveHidden(){ localStorage.setItem("wc_hidden_rounds_v1", JSON.stringify([...hiddenRounds])); }
+function loadHidden(){ try{ const s=localStorage.getItem("wc_hidden_rounds_v2"); if(s) return new Set(JSON.parse(s)); }catch(e){} return new Set(["R32"]); }  // R32 hidden by default now it's done
+function saveHidden(){ localStorage.setItem("wc_hidden_rounds_v2", JSON.stringify([...hiddenRounds])); }
 function laterHasPick(idx){ for(let j=idx+1;j<ROUNDS.length;j++){ if(ROUNDS[j].matches.some(n=>state.pick[n])) return true; } return false; }
 function roundFinished(r,idx){ return r.matches.every(n=>state.pick[n]) || laterHasPick(idx); }
 function renderToggles(){
@@ -772,10 +786,11 @@ function renderUpcoming(list){
       : `<span class="upc-vs">vs</span>`;
     const q = encodeURIComponent(m.home+" vs "+m.away+" world cup");
     const link = `<a class="upc-link" href="https://www.google.com/search?q=${q}" target="_blank" rel="noopener">${live?"Live & scorers ↗":"Match info ↗"}</a>`;
+    const odds = m.odds ? `<div class="upc-odds">Odds · ${esc(m.home)} <b>${m.odds.h}</b> · Draw <b>${m.odds.d}</b> · ${esc(m.away)} <b>${m.odds.a}</b></div>` : "";
     return `<div class="upc${backed?" backed":""}">`+
       `<div class="upc-time${live?" live":""}">${live?"LIVE":esc(when)}<span class="upc-stage">${esc(stage)}</span></div>`+
       `<div class="upc-teams"><span>${flagOf(m.home)} ${esc(m.home)}</span>${mid}<span>${flagOf(m.away)} ${esc(m.away)}</span>${link}</div>`+
-      backers+`</div>`;
+      backers+odds+`</div>`;
   }).join("")
   + `<div class="upc-note">Tap “Live & scorers” for the live scoreboard and goal scorers.</div>`;
   wrap.style.display="";
@@ -799,8 +814,10 @@ async function loadOfficial(opts){
     const res=await fetch("results.json?_="+Date.now(), {cache:"no-store"});
     if(!res.ok){ el.textContent="⚠️ results.json not found (is the site hosted?)"; msg="⚠️ Not found"; return; }
     const data=await res.json();
+    UPCOMING = data.upcoming || [];
     const changed=applyOfficial(data.matches);
     if(changed){ save(); renderAll(); }
+    renderTracker();
     renderUpcoming(data.upcoming);
     if(data.updated){
       const d=new Date(data.updated);
