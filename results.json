@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-06T02:45:22.577Z",
+  "updated": "2026-07-06T02:52:34.436Z",
   "source": "football-data.org",
   "matches": [
     {
@@ -439,7 +439,8 @@
       "score": {
         "h": 2,
         "a": 3
-      }
+      },
+      "odds": null
     },
     {
       "date": "2026-07-06T19:00:00Z",
@@ -447,7 +448,8 @@
       "stage": "LAST_16",
       "home": "Portugal",
       "away": "Spain",
-      "score": null
+      "score": null,
+      "odds": null
     },
     {
       "date": "2026-07-07T00:00:00Z",
@@ -455,7 +457,8 @@
       "stage": "LAST_16",
       "home": "United States",
       "away": "Belgium",
-      "score": null
+      "score": null,
+      "odds": null
     },
     {
       "date": "2026-07-07T16:00:00Z",
@@ -463,7 +466,8 @@
       "stage": "LAST_16",
       "home": "Argentina",
       "away": "Egypt",
-      "score": null
+      "score": null,
+      "odds": null
     },
     {
       "date": "2026-07-07T20:00:00Z",
@@ -471,7 +475,8 @@
       "stage": "LAST_16",
       "home": "Switzerland",
       "away": "Colombia",
-      "score": null
+      "score": null,
+      "odds": null
     },
     {
       "date": "2026-07-09T20:00:00Z",
@@ -479,7 +484,8 @@
       "stage": "QUARTER_FINALS",
       "home": "France",
       "away": "Morocco",
-      "score": null
+      "score": null,
+      "odds": null
     }
   ]
 }
