@@ -15,7 +15,7 @@ function keep(reason){ console.warn("Keeping existing results.json:", reason); p
 const ALIAS = { holland:"netherlands", netherland:"netherlands", turkey:"turkiye", "türkiye":"turkiye",
   "united states":"usa", "united states of america":"usa", "korea republic":"south korea",
   "bosnia and herzegovina":"bosnia", "bosnia-herzegovina":"bosnia", "bosnia & herzegovina":"bosnia",
-  "cabo verde":"cape verde", "congo dr":"dr congo", "dr congo":"dr congo",
+  "cabo verde":"cape verde", "cape verde islands":"cape verde", "congo dr":"dr congo", "dr congo":"dr congo",
   "democratic republic of the congo":"dr congo", "democratic republic of congo":"dr congo",
   "cote d'ivoire":"ivory coast", "côte d'ivoire":"ivory coast",
   "czech republic":"czechia", czech:"czechia" };
