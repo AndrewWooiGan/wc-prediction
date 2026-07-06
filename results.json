@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-06T03:00:35.037Z",
+  "updated": "2026-07-06T03:15:24.752Z",
   "source": "football-data.org",
   "matches": [
     {
@@ -427,21 +427,15 @@
       "home": "Brazil",
       "away": "Norway",
       "winner": "Norway"
-    }
-  ],
-  "upcoming": [
+    },
     {
-      "date": "2026-07-06T01:00:00Z",
-      "status": "IN_PLAY",
       "stage": "LAST_16",
       "home": "Mexico",
       "away": "England",
-      "score": {
-        "h": 2,
-        "a": 3
-      },
-      "odds": null
-    },
+      "winner": "England"
+    }
+  ],
+  "upcoming": [
     {
       "date": "2026-07-06T19:00:00Z",
       "status": "TIMED",
