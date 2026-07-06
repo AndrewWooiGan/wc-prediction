@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-06T02:30:32.732Z",
+  "updated": "2026-07-06T02:45:22.577Z",
   "source": "football-data.org",
   "matches": [
     {
@@ -437,7 +437,7 @@
       "home": "Mexico",
       "away": "England",
       "score": {
-        "h": 1,
+        "h": 2,
         "a": 3
       }
     },
