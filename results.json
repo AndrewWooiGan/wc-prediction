@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-06T06:00:39.526Z",
+  "updated": "2026-07-06T06:15:24.910Z",
   "source": "football-data.org",
   "matches": [
     {
@@ -478,6 +478,15 @@
       "stage": "QUARTER_FINALS",
       "home": "France",
       "away": "Morocco",
+      "score": null,
+      "odds": null
+    },
+    {
+      "date": "2026-07-11T21:00:00Z",
+      "status": "TIMED",
+      "stage": "QUARTER_FINALS",
+      "home": "Norway",
+      "away": "England",
       "score": null,
       "odds": null
     }
