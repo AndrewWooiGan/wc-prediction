@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-06T06:30:35.325Z",
+  "updated": "2026-07-06T06:36:54.403Z",
   "source": "football-data.org",
   "matches": [
     {
@@ -443,7 +443,11 @@
       "home": "Portugal",
       "away": "Spain",
       "score": null,
-      "odds": null
+      "odds": {
+        "h": 3.95,
+        "d": 3.5,
+        "a": 1.89
+      }
     },
     {
       "date": "2026-07-07T00:00:00Z",
@@ -452,7 +456,11 @@
       "home": "United States",
       "away": "Belgium",
       "score": null,
-      "odds": null
+      "odds": {
+        "h": 2.55,
+        "d": 3.45,
+        "a": 2.75
+      }
     },
     {
       "date": "2026-07-07T16:00:00Z",
@@ -461,7 +469,11 @@
       "home": "Argentina",
       "away": "Egypt",
       "score": null,
-      "odds": null
+      "odds": {
+        "h": 1.36,
+        "d": 4.7,
+        "a": 9.5
+      }
     },
     {
       "date": "2026-07-07T20:00:00Z",
@@ -470,7 +482,11 @@
       "home": "Switzerland",
       "away": "Colombia",
       "score": null,
-      "odds": null
+      "odds": {
+        "h": 3.4,
+        "d": 3.1,
+        "a": 2.3
+      }
     },
     {
       "date": "2026-07-09T20:00:00Z",
@@ -479,7 +495,11 @@
       "home": "France",
       "away": "Morocco",
       "score": null,
-      "odds": null
+      "odds": {
+        "h": 1.6,
+        "d": 4,
+        "a": 5.75
+      }
     },
     {
       "date": "2026-07-11T21:00:00Z",
@@ -488,7 +508,46 @@
       "home": "Norway",
       "away": "England",
       "score": null,
-      "odds": null
+      "odds": {
+        "h": 3.75,
+        "d": 3.45,
+        "a": 1.94
+      }
     }
-  ]
+  ],
+  "oddsCache": {
+    "fetchedAt": "2026-07-06T06:36:54.402Z",
+    "byPair": {
+      "portugal|spain": {
+        "h": 3.95,
+        "d": 3.5,
+        "a": 1.89
+      },
+      "belgium|usa": {
+        "h": 2.55,
+        "d": 3.45,
+        "a": 2.75
+      },
+      "argentina|egypt": {
+        "h": 1.36,
+        "d": 4.7,
+        "a": 9.5
+      },
+      "colombia|switzerland": {
+        "h": 3.4,
+        "d": 3.1,
+        "a": 2.3
+      },
+      "france|morocco": {
+        "h": 1.6,
+        "d": 4,
+        "a": 5.75
+      },
+      "england|norway": {
+        "h": 3.75,
+        "d": 3.45,
+        "a": 1.94
+      }
+    }
+  }
 }
