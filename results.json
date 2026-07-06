@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-06T19:45:26.044Z",
+  "updated": "2026-07-06T20:00:42.911Z",
   "source": "football-data.org",
   "matches": [
     {
@@ -436,6 +436,22 @@
     }
   ],
   "upcoming": [
+    {
+      "date": "2026-07-06T19:00:00Z",
+      "status": "PAUSED",
+      "stage": "LAST_16",
+      "home": "Portugal",
+      "away": "Spain",
+      "score": {
+        "h": 0,
+        "a": 0
+      },
+      "odds": {
+        "h": 3.85,
+        "d": 3.4,
+        "a": 1.93
+      }
+    },
     {
       "date": "2026-07-07T00:00:00Z",
       "status": "TIMED",
