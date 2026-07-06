@@ -25,6 +25,7 @@ jobs:
       - name: Fetch latest results
         env:
           FOOTBALL_DATA_TOKEN: ${{ secrets.FOOTBALL_DATA_TOKEN }}
+          ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}   # optional; leave unset to skip odds
         run: node update-results.mjs
 
       - name: Commit if changed
