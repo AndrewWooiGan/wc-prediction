@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-07T16:45:26.729Z",
+  "updated": "2026-07-07T17:00:43.487Z",
   "source": "football-data.org",
   "matches": [
     {
@@ -449,6 +449,22 @@
   ],
   "upcoming": [
     {
+      "date": "2026-07-07T16:00:00Z",
+      "status": "PAUSED",
+      "stage": "LAST_16",
+      "home": "Argentina",
+      "away": "Egypt",
+      "score": {
+        "h": 0,
+        "a": 1
+      },
+      "odds": {
+        "h": 2.28,
+        "d": 2.9,
+        "a": 3.4
+      }
+    },
+    {
       "date": "2026-07-07T20:00:00Z",
       "status": "TIMED",
       "stage": "LAST_16",
@@ -469,9 +485,9 @@
       "away": "Morocco",
       "score": null,
       "odds": {
-        "h": 1.6,
+        "h": 1.58,
         "d": 4,
-        "a": 5.75
+        "a": 6
       }
     },
     {
@@ -482,9 +498,9 @@
       "away": "Belgium",
       "score": null,
       "odds": {
-        "h": 1.62,
+        "h": 1.6,
         "d": 4,
-        "a": 5.2
+        "a": 5.5
       }
     },
     {
@@ -502,12 +518,12 @@
     }
   ],
   "oddsCache": {
-    "fetchedAt": "2026-07-07T14:00:42.966Z",
+    "fetchedAt": "2026-07-07T17:00:43.486Z",
     "byPair": {
       "argentina|egypt": {
-        "h": 1.33,
-        "d": 4.8,
-        "a": 11
+        "h": 2.28,
+        "d": 2.9,
+        "a": 3.4
       },
       "colombia|switzerland": {
         "h": 3.5,
@@ -515,14 +531,14 @@
         "a": 2.25
       },
       "france|morocco": {
-        "h": 1.6,
+        "h": 1.58,
         "d": 4,
-        "a": 5.75
+        "a": 6
       },
       "belgium|spain": {
-        "h": 1.62,
+        "h": 1.6,
         "d": 4,
-        "a": 5.2
+        "a": 5.5
       },
       "england|norway": {
         "h": 4,
