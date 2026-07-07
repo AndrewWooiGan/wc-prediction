@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-07T00:00:37.539Z",
+  "updated": "2026-07-07T00:15:23.874Z",
   "source": "football-data.org",
   "matches": [
     {
@@ -444,11 +444,14 @@
   "upcoming": [
     {
       "date": "2026-07-07T00:00:00Z",
-      "status": "TIMED",
+      "status": "IN_PLAY",
       "stage": "LAST_16",
       "home": "United States",
       "away": "Belgium",
-      "score": null,
+      "score": {
+        "h": 0,
+        "a": 1
+      },
       "odds": {
         "h": 2.55,
         "d": 3.3,
