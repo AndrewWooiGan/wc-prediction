@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-07T21:45:26.579Z",
+  "updated": "2026-07-07T22:00:45.495Z",
   "source": "football-data.org",
   "matches": [
     {
@@ -456,7 +456,7 @@
   "upcoming": [
     {
       "date": "2026-07-07T20:00:00Z",
-      "status": "IN_PLAY",
+      "status": "PAUSED",
       "stage": "LAST_16",
       "home": "Switzerland",
       "away": "Colombia",
