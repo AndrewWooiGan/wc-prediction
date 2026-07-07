@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-07T20:00:40.783Z",
+  "updated": "2026-07-07T20:15:24.910Z",
   "source": "football-data.org",
   "matches": [
     {
@@ -456,15 +456,18 @@
   "upcoming": [
     {
       "date": "2026-07-07T20:00:00Z",
-      "status": "TIMED",
+      "status": "IN_PLAY",
       "stage": "LAST_16",
       "home": "Switzerland",
       "away": "Colombia",
-      "score": null,
+      "score": {
+        "h": 0,
+        "a": 0
+      },
       "odds": {
         "h": 3.5,
-        "d": 3.1,
-        "a": 2.25
+        "d": 2.7,
+        "a": 2.4
       }
     },
     {
@@ -508,17 +511,12 @@
     }
   ],
   "oddsCache": {
-    "fetchedAt": "2026-07-07T17:00:43.486Z",
+    "fetchedAt": "2026-07-07T20:15:24.909Z",
     "byPair": {
-      "argentina|egypt": {
-        "h": 2.28,
-        "d": 2.9,
-        "a": 3.4
-      },
       "colombia|switzerland": {
         "h": 3.5,
-        "d": 3.1,
-        "a": 2.25
+        "d": 2.7,
+        "a": 2.4
       },
       "france|morocco": {
         "h": 1.58,
