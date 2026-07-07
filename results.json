@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-07T00:30:35.313Z",
+  "updated": "2026-07-07T00:45:22.872Z",
   "source": "football-data.org",
   "matches": [
     {
@@ -449,8 +449,8 @@
       "home": "United States",
       "away": "Belgium",
       "score": {
-        "h": 0,
-        "a": 1
+        "h": 1,
+        "a": 2
       },
       "odds": {
         "h": 2.55,
