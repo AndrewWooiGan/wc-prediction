@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-07T17:15:24.380Z",
+  "updated": "2026-07-07T17:30:35.893Z",
   "source": "football-data.org",
   "matches": [
     {
@@ -456,7 +456,7 @@
       "away": "Egypt",
       "score": {
         "h": 0,
-        "a": 1
+        "a": 2
       },
       "odds": {
         "h": 2.28,
