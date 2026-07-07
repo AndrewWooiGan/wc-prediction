@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-07T01:18:42.757Z",
+  "updated": "2026-07-07T01:30:36.814Z",
   "source": "football-data.org",
   "matches": [
     {
@@ -450,7 +450,7 @@
       "away": "Belgium",
       "score": {
         "h": 1,
-        "a": 2
+        "a": 3
       },
       "odds": {
         "h": 8.5,
