@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-07T02:00:36.958Z",
+  "updated": "2026-07-07T02:15:23.266Z",
   "source": "football-data.org",
   "matches": [
     {
@@ -439,25 +439,15 @@
       "home": "Portugal",
       "away": "Spain",
       "winner": "Spain"
-    }
-  ],
-  "upcoming": [
+    },
     {
-      "date": "2026-07-07T00:00:00Z",
-      "status": "IN_PLAY",
       "stage": "LAST_16",
       "home": "United States",
       "away": "Belgium",
-      "score": {
-        "h": 1,
-        "a": 3
-      },
-      "odds": {
-        "h": 8.5,
-        "d": 4.1,
-        "a": 1.4
-      }
-    },
+      "winner": "Belgium"
+    }
+  ],
+  "upcoming": [
     {
       "date": "2026-07-07T16:00:00Z",
       "status": "TIMED",
