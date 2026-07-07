@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-07T10:45:23.381Z",
+  "updated": "2026-07-07T11:00:39.283Z",
   "source": "football-data.org",
   "matches": [
     {
@@ -515,7 +515,7 @@
     }
   ],
   "oddsCache": {
-    "fetchedAt": "2026-07-07T07:45:23.790Z",
+    "fetchedAt": "2026-07-07T11:00:39.282Z",
     "byPair": {
       "argentina|egypt": {
         "h": 1.32,
