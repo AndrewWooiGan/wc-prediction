@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-07T00:45:22.872Z",
+  "updated": "2026-07-07T01:00:41.864Z",
   "source": "football-data.org",
   "matches": [
     {
@@ -444,7 +444,7 @@
   "upcoming": [
     {
       "date": "2026-07-07T00:00:00Z",
-      "status": "IN_PLAY",
+      "status": "PAUSED",
       "stage": "LAST_16",
       "home": "United States",
       "away": "Belgium",
