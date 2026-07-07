@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-07T07:30:33.566Z",
+  "updated": "2026-07-07T07:45:23.791Z",
   "source": "football-data.org",
   "matches": [
     {
@@ -458,7 +458,7 @@
       "odds": {
         "h": 1.32,
         "d": 5,
-        "a": 10.5
+        "a": 11
       }
     },
     {
@@ -508,19 +508,19 @@
       "away": "England",
       "score": null,
       "odds": {
-        "h": 4.1,
-        "d": 3.45,
-        "a": 1.86
+        "h": 4,
+        "d": 3.35,
+        "a": 1.9
       }
     }
   ],
   "oddsCache": {
-    "fetchedAt": "2026-07-07T04:30:34.283Z",
+    "fetchedAt": "2026-07-07T07:45:23.790Z",
     "byPair": {
       "argentina|egypt": {
         "h": 1.32,
         "d": 5,
-        "a": 10.5
+        "a": 11
       },
       "colombia|switzerland": {
         "h": 3.5,
@@ -538,9 +538,9 @@
         "a": 5.2
       },
       "england|norway": {
-        "h": 4.1,
-        "d": 3.45,
-        "a": 1.86
+        "h": 4,
+        "d": 3.35,
+        "a": 1.9
       }
     }
   }
