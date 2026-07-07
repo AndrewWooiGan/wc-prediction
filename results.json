@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-07T22:15:24.041Z",
+  "updated": "2026-07-07T22:30:39.338Z",
   "source": "football-data.org",
   "matches": [
     {
@@ -454,6 +454,22 @@
     }
   ],
   "upcoming": [
+    {
+      "date": "2026-07-07T20:00:00Z",
+      "status": "IN_PLAY",
+      "stage": "LAST_16",
+      "home": "Switzerland",
+      "away": "Colombia",
+      "score": {
+        "h": 0,
+        "a": 0
+      },
+      "odds": {
+        "h": 3.5,
+        "d": 2.7,
+        "a": 2.4
+      }
+    },
     {
       "date": "2026-07-09T20:00:00Z",
       "status": "TIMED",
