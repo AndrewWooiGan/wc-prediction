@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-07T16:00:39.983Z",
+  "updated": "2026-07-07T16:15:25.150Z",
   "source": "football-data.org",
   "matches": [
     {
@@ -448,19 +448,6 @@
     }
   ],
   "upcoming": [
-    {
-      "date": "2026-07-07T16:00:00Z",
-      "status": "TIMED",
-      "stage": "LAST_16",
-      "home": "Argentina",
-      "away": "Egypt",
-      "score": null,
-      "odds": {
-        "h": 1.33,
-        "d": 4.8,
-        "a": 11
-      }
-    },
     {
       "date": "2026-07-07T20:00:00Z",
       "status": "TIMED",
