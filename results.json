@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-08T06:00:41.447Z",
+  "updated": "2026-07-08T06:15:26.567Z",
   "source": "football-data.org",
   "matches": [
     {
@@ -451,6 +451,12 @@
       "home": "Argentina",
       "away": "Egypt",
       "winner": "Argentina"
+    },
+    {
+      "stage": "LAST_16",
+      "home": "Switzerland",
+      "away": "Colombia",
+      "winner": "Switzerland"
     }
   ],
   "upcoming": [
@@ -491,6 +497,19 @@
         "h": 4,
         "d": 3.4,
         "a": 1.88
+      }
+    },
+    {
+      "date": "2026-07-12T01:00:00Z",
+      "status": "TIMED",
+      "stage": "QUARTER_FINALS",
+      "home": "Argentina",
+      "away": "Switzerland",
+      "score": null,
+      "odds": {
+        "h": 1.72,
+        "d": 3.2,
+        "a": 5.6
       }
     }
   ],
