@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-09T21:15:26.997Z",
+  "updated": "2026-07-09T21:30:38.386Z",
   "source": "football-data.org",
   "matches": [
     {
@@ -467,7 +467,7 @@
       "home": "France",
       "away": "Morocco",
       "score": {
-        "h": 0,
+        "h": 1,
         "a": 0
       },
       "odds": {
