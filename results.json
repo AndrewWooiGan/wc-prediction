@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-09T20:52:25.768Z",
+  "updated": "2026-07-09T21:00:37.720Z",
   "source": "football-data.org",
   "matches": [
     {
@@ -462,7 +462,7 @@
   "upcoming": [
     {
       "date": "2026-07-09T20:00:00Z",
-      "status": "IN_PLAY",
+      "status": "PAUSED",
       "stage": "QUARTER_FINALS",
       "home": "France",
       "away": "Morocco",
