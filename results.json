@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-10T19:45:26.650Z",
+  "updated": "2026-07-10T20:00:51.463Z",
   "source": "football-data.org",
   "matches": [
     {
@@ -468,13 +468,13 @@
   "upcoming": [
     {
       "date": "2026-07-10T19:00:00Z",
-      "status": "IN_PLAY",
+      "status": "PAUSED",
       "stage": "QUARTER_FINALS",
       "home": "Spain",
       "away": "Belgium",
       "score": {
         "h": 1,
-        "a": 0
+        "a": 1
       },
       "odds": {
         "h": 1.6,
