@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-10T20:00:51.463Z",
+  "updated": "2026-07-10T20:15:26.420Z",
   "source": "football-data.org",
   "matches": [
     {
@@ -468,7 +468,7 @@
   "upcoming": [
     {
       "date": "2026-07-10T19:00:00Z",
-      "status": "PAUSED",
+      "status": "IN_PLAY",
       "stage": "QUARTER_FINALS",
       "home": "Spain",
       "away": "Belgium",
