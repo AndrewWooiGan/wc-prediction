@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-10T19:30:40.571Z",
+  "updated": "2026-07-10T19:43:49.390Z",
   "source": "football-data.org",
   "matches": [
     {
@@ -473,7 +473,7 @@
       "home": "Spain",
       "away": "Belgium",
       "score": {
-        "h": 0,
+        "h": 1,
         "a": 0
       },
       "odds": {
