@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-10T21:00:42.777Z",
+  "updated": "2026-07-10T21:13:25.048Z",
   "source": "football-data.org",
   "matches": [
     {
@@ -463,25 +463,15 @@
       "home": "France",
       "away": "Morocco",
       "winner": "France"
-    }
-  ],
-  "upcoming": [
+    },
     {
-      "date": "2026-07-10T19:00:00Z",
-      "status": "IN_PLAY",
       "stage": "QUARTER_FINALS",
       "home": "Spain",
       "away": "Belgium",
-      "score": {
-        "h": 2,
-        "a": 1
-      },
-      "odds": {
-        "h": 2,
-        "d": 2.18,
-        "a": 8.5
-      }
-    },
+      "winner": "Spain"
+    }
+  ],
+  "upcoming": [
     {
       "date": "2026-07-11T21:00:00Z",
       "status": "TIMED",
