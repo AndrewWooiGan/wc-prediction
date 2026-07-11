@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-11T21:45:24.834Z",
+  "updated": "2026-07-11T22:00:45.947Z",
   "source": "football-data.org",
   "matches": [
     {
@@ -468,13 +468,13 @@
   "upcoming": [
     {
       "date": "2026-07-11T21:00:00Z",
-      "status": "IN_PLAY",
+      "status": "PAUSED",
       "stage": "QUARTER_FINALS",
       "home": "Norway",
       "away": "England",
       "score": {
         "h": 1,
-        "a": 0
+        "a": 1
       },
       "odds": {
         "h": 4.8,
