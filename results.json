@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-11T21:00:42.806Z",
+  "updated": "2026-07-11T21:15:24.470Z",
   "source": "football-data.org",
   "matches": [
     {
@@ -430,12 +430,6 @@
     },
     {
       "stage": "LAST_16",
-      "home": "Mexico",
-      "away": "England",
-      "winner": "England"
-    },
-    {
-      "stage": "LAST_16",
       "home": "Portugal",
       "away": "Spain",
       "winner": "Spain"
@@ -474,11 +468,14 @@
   "upcoming": [
     {
       "date": "2026-07-11T21:00:00Z",
-      "status": "TIMED",
+      "status": "IN_PLAY",
       "stage": "QUARTER_FINALS",
       "home": "Norway",
       "away": "England",
-      "score": null,
+      "score": {
+        "h": 0,
+        "a": 0
+      },
       "odds": {
         "h": 3.7,
         "d": 3.7,
