@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-11T22:00:45.947Z",
+  "updated": "2026-07-11T22:15:25.065Z",
   "source": "football-data.org",
   "matches": [
     {
@@ -468,7 +468,7 @@
   "upcoming": [
     {
       "date": "2026-07-11T21:00:00Z",
-      "status": "PAUSED",
+      "status": "IN_PLAY",
       "stage": "QUARTER_FINALS",
       "home": "Norway",
       "away": "England",
