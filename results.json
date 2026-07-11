@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-11T05:45:24.381Z",
+  "updated": "2026-07-11T06:00:40.559Z",
   "source": "football-data.org",
   "matches": [
     {
@@ -493,14 +493,14 @@
       "away": "Switzerland",
       "score": null,
       "odds": {
-        "h": 1.63,
+        "h": 1.64,
         "d": 3.4,
         "a": 5.8
       }
     }
   ],
   "oddsCache": {
-    "fetchedAt": "2026-07-11T02:45:24.680Z",
+    "fetchedAt": "2026-07-11T06:00:40.558Z",
     "byPair": {
       "england|norway": {
         "h": 3.95,
@@ -508,13 +508,13 @@
         "a": 1.86
       },
       "argentina|switzerland": {
-        "h": 1.63,
+        "h": 1.64,
         "d": 3.4,
         "a": 5.8
       },
       "france|spain": {
         "h": 2.42,
-        "d": 3.3,
+        "d": 3.35,
         "a": 3.3
       }
     }
