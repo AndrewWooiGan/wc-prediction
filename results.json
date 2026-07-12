@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-12T01:15:23.938Z",
+  "updated": "2026-07-12T01:30:36.406Z",
   "source": "football-data.org",
   "matches": [
     {
@@ -479,7 +479,7 @@
       "home": "Argentina",
       "away": "Switzerland",
       "score": {
-        "h": 0,
+        "h": 1,
         "a": 0
       },
       "odds": {
