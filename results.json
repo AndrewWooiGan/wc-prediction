@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-12T01:00:43.348Z",
+  "updated": "2026-07-12T01:06:18.644Z",
   "source": "football-data.org",
   "matches": [
     {
@@ -474,11 +474,14 @@
   "upcoming": [
     {
       "date": "2026-07-12T01:00:00Z",
-      "status": "TIMED",
+      "status": "IN_PLAY",
       "stage": "QUARTER_FINALS",
       "home": "Argentina",
       "away": "Switzerland",
-      "score": null,
+      "score": {
+        "h": 0,
+        "a": 0
+      },
       "odds": {
         "h": 1.65,
         "d": 3.4,
