@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-12T03:00:42.306Z",
+  "updated": "2026-07-12T03:15:23.613Z",
   "source": "football-data.org",
   "matches": [
     {
@@ -474,7 +474,7 @@
   "upcoming": [
     {
       "date": "2026-07-12T01:00:00Z",
-      "status": "IN_PLAY",
+      "status": "PAUSED",
       "stage": "QUARTER_FINALS",
       "home": "Argentina",
       "away": "Switzerland",
