@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-11T23:45:25.598Z",
+  "updated": "2026-07-12T00:00:48.291Z",
   "source": "football-data.org",
   "matches": [
     {
@@ -463,25 +463,15 @@
       "home": "Spain",
       "away": "Belgium",
       "winner": "Spain"
-    }
-  ],
-  "upcoming": [
+    },
     {
-      "date": "2026-07-11T21:00:00Z",
-      "status": "PAUSED",
       "stage": "QUARTER_FINALS",
       "home": "Norway",
       "away": "England",
-      "score": {
-        "h": 1,
-        "a": 2
-      },
-      "odds": {
-        "h": 4.8,
-        "d": 3.25,
-        "a": 1.79
-      }
-    },
+      "winner": "England"
+    }
+  ],
+  "upcoming": [
     {
       "date": "2026-07-12T01:00:00Z",
       "status": "TIMED",
