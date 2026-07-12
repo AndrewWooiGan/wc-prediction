@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-12T03:45:26.667Z",
+  "updated": "2026-07-12T04:00:44.511Z",
   "source": "football-data.org",
   "matches": [
     {
@@ -469,21 +469,15 @@
       "home": "Norway",
       "away": "England",
       "winner": "England"
-    }
-  ],
-  "upcoming": [
+    },
     {
-      "date": "2026-07-12T01:00:00Z",
-      "status": "IN_PLAY",
       "stage": "QUARTER_FINALS",
       "home": "Argentina",
       "away": "Switzerland",
-      "score": {
-        "h": 2,
-        "a": 1
-      },
-      "odds": null
-    },
+      "winner": "Argentina"
+    }
+  ],
+  "upcoming": [
     {
       "date": "2026-07-14T19:00:00Z",
       "status": "TIMED",
