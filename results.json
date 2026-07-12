@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-12T02:30:40.467Z",
+  "updated": "2026-07-12T02:45:28.931Z",
   "source": "football-data.org",
   "matches": [
     {
@@ -480,7 +480,7 @@
       "away": "Switzerland",
       "score": {
         "h": 1,
-        "a": 0
+        "a": 1
       },
       "odds": {
         "h": 1.65,
