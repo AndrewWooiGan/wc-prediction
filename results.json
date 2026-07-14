@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-14T19:00:44.577Z",
+  "updated": "2026-07-14T19:15:23.810Z",
   "source": "football-data.org",
   "matches": [
     {
@@ -486,11 +486,14 @@
   "upcoming": [
     {
       "date": "2026-07-14T19:00:00Z",
-      "status": "TIMED",
+      "status": "IN_PLAY",
       "stage": "SEMI_FINALS",
       "home": "France",
       "away": "Spain",
-      "score": null,
+      "score": {
+        "h": 0,
+        "a": 0
+      },
       "odds": {
         "h": 2.64,
         "d": 3.1,
