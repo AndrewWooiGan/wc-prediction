@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-14T19:52:09.200Z",
+  "updated": "2026-07-14T20:00:48.259Z",
   "source": "football-data.org",
   "matches": [
     {
@@ -486,7 +486,7 @@
   "upcoming": [
     {
       "date": "2026-07-14T19:00:00Z",
-      "status": "IN_PLAY",
+      "status": "PAUSED",
       "stage": "SEMI_FINALS",
       "home": "France",
       "away": "Spain",
