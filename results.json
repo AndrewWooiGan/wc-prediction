@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-14T21:00:45.998Z",
+  "updated": "2026-07-14T21:06:58.160Z",
   "source": "football-data.org",
   "matches": [
     {
@@ -481,25 +481,15 @@
       "home": "Argentina",
       "away": "Switzerland",
       "winner": "Argentina"
-    }
-  ],
-  "upcoming": [
+    },
     {
-      "date": "2026-07-14T19:00:00Z",
-      "status": "IN_PLAY",
       "stage": "SEMI_FINALS",
       "home": "France",
       "away": "Spain",
-      "score": {
-        "h": 0,
-        "a": 2
-      },
-      "odds": {
-        "h": 2.64,
-        "d": 3.1,
-        "a": 3.25
-      }
-    },
+      "winner": "Spain"
+    }
+  ],
+  "upcoming": [
     {
       "date": "2026-07-15T19:00:00Z",
       "status": "TIMED",
@@ -508,24 +498,24 @@
       "away": "Argentina",
       "score": null,
       "odds": {
-        "h": 2.65,
+        "h": 2.7,
         "d": 2.8,
-        "a": 2.95
+        "a": 2.85
       }
     }
   ],
   "oddsCache": {
-    "fetchedAt": "2026-07-14T18:00:46.804Z",
+    "fetchedAt": "2026-07-14T21:06:58.159Z",
     "byPair": {
       "france|spain": {
-        "h": 2.64,
-        "d": 3.1,
-        "a": 3.25
+        "h": 1000,
+        "d": 1000,
+        "a": 1
       },
       "argentina|england": {
-        "h": 2.65,
+        "h": 2.7,
         "d": 2.8,
-        "a": 2.95
+        "a": 2.85
       }
     }
   }
