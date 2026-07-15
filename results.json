@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-15T20:45:22.964Z",
+  "updated": "2026-07-15T21:00:44.920Z",
   "source": "football-data.org",
   "matches": [
     {
@@ -498,7 +498,7 @@
       "away": "Argentina",
       "score": {
         "h": 1,
-        "a": 0
+        "a": 2
       },
       "odds": {
         "h": 2.7,
