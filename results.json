@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-15T19:00:43.758Z",
+  "updated": "2026-07-15T19:15:23.934Z",
   "source": "football-data.org",
   "matches": [
     {
@@ -492,25 +492,28 @@
   "upcoming": [
     {
       "date": "2026-07-15T19:00:00Z",
-      "status": "TIMED",
+      "status": "IN_PLAY",
       "stage": "SEMI_FINALS",
       "home": "England",
       "away": "Argentina",
-      "score": null,
+      "score": {
+        "h": 0,
+        "a": 0
+      },
       "odds": {
-        "h": 2.63,
-        "d": 2.8,
-        "a": 3
+        "h": 2.7,
+        "d": 2.84,
+        "a": 3.45
       }
     }
   ],
   "oddsCache": {
-    "fetchedAt": "2026-07-15T16:00:47.552Z",
+    "fetchedAt": "2026-07-15T19:15:23.933Z",
     "byPair": {
       "argentina|england": {
-        "h": 2.63,
-        "d": 2.8,
-        "a": 3
+        "h": 2.7,
+        "d": 2.84,
+        "a": 3.45
       }
     }
   }
