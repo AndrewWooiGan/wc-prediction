@@ -214,6 +214,23 @@
   .upc-odds b{color:var(--text);font-weight:700;}
   .tk-odds{font-size:11px;color:var(--muted);margin-top:3px;}
 
+  /* CHAMPION CELEBRATION */
+  #confetti{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:10001;display:none;}
+  #championBanner{display:flex;align-items:center;gap:16px;margin-bottom:18px;padding:18px 20px;border-radius:18px;
+    border:1px solid var(--gold);background:linear-gradient(135deg,color-mix(in srgb,var(--gold) 24%,var(--panel)),var(--panel) 60%);
+    box-shadow:0 0 46px -12px var(--gold);animation:rise .5s ease both, champGlow 2.6s ease-in-out infinite;}
+  @keyframes champGlow{0%,100%{box-shadow:0 0 46px -12px var(--gold)}50%{box-shadow:0 0 66px -6px var(--gold)}}
+  .champ-emoji{font-size:44px;line-height:1;flex:0 0 auto;animation:champBounce 1.6s ease-in-out infinite;}
+  @keyframes champBounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+  .champ-title{font-family:'Barlow Semi Condensed',sans-serif;font-weight:800;font-size:clamp(20px,4vw,26px);text-transform:uppercase;color:var(--gold);line-height:1.02;}
+  .champ-sub{font-size:13.5px;color:var(--text);margin-top:5px;}
+  .champ-sub b{color:var(--gold);}
+  .champ-replay{margin-left:auto;flex:0 0 auto;background:var(--panel2);border:1px solid var(--gold);color:var(--gold);
+    border-radius:999px;padding:9px 15px;font-weight:700;cursor:pointer;box-shadow:none;
+    font-family:'Barlow Semi Condensed',sans-serif;text-transform:uppercase;letter-spacing:.04em;font-size:12px;}
+  .champ-replay:hover{background:color-mix(in srgb,var(--gold) 16%,var(--panel2));}
+  @media(max-width:560px){#championBanner{flex-wrap:wrap}.champ-replay{margin-left:0;width:100%;text-align:center}}
+
   /* TABLES */
   table{width:100%;border-collapse:collapse;font-size:14px;}
   th,td{padding:12px 14px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top;}
@@ -351,6 +368,8 @@
     </div>
   </header>
 
+  <div id="championBanner" style="display:none"></div>
+
   <div id="upcomingWrap" style="display:none">
     <h2>Kicking off within 24h <button class="sec-toggle" id="upcToggle">Hide</button></h2>
     <div class="card" id="upcomingCard"><div id="upcomingList"></div></div>
@@ -399,6 +418,7 @@
 </div>
 
 <div id="bkTip"></div>
+<canvas id="confetti"></canvas>
 
 <div id="roadModal" class="modal"><div class="modal-card" id="roadCard"></div></div>
 
@@ -745,7 +765,53 @@ function renderBracket(){
 
 // ---------- UTIL ----------
 function esc(s){ return String(s==null?"":s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
-function renderAll(){ renderTop(); renderStandings(); renderTracker(); renderToggles(); renderBracket(); }
+// ---------- CHAMPION CELEBRATION ----------
+function fireConfetti(ms){
+  ms = ms || 6500;
+  const c=document.getElementById("confetti"); if(!c) return;
+  const ctx=c.getContext("2d");
+  const size=()=>{ c.width=window.innerWidth; c.height=window.innerHeight; };
+  size(); c.style.display="block";
+  const colors=["#ffcf47","#4c7dff","#9b6bff","#37d67a","#ff5c6a","#ffffff"];
+  const N=170;
+  const parts=Array.from({length:N},()=>({
+    x:Math.random()*c.width, y:-20-Math.random()*c.height*0.6,
+    w:5+Math.random()*7, h:8+Math.random()*8, col:colors[Math.random()*colors.length|0],
+    vx:-2.2+Math.random()*4.4, vy:2.4+Math.random()*4.2, rot:Math.random()*6.28, vr:-0.25+Math.random()*0.5
+  }));
+  const t0=performance.now(); let raf;
+  function frame(t){
+    ctx.clearRect(0,0,c.width,c.height);
+    for(const p of parts){
+      p.x+=p.vx; p.y+=p.vy; p.vy+=0.04; p.rot+=p.vr;
+      if(p.y>c.height+30){ p.y=-20; p.x=Math.random()*c.width; p.vy=2.4+Math.random()*4.2; }
+      ctx.save(); ctx.translate(p.x,p.y); ctx.rotate(p.rot); ctx.fillStyle=p.col;
+      ctx.fillRect(-p.w/2,-p.h/2,p.w,p.h); ctx.restore();
+    }
+    if(t-t0<ms){ raf=requestAnimationFrame(frame); }
+    else { cancelAnimationFrame(raf); ctx.clearRect(0,0,c.width,c.height); c.style.display="none"; }
+  }
+  raf=requestAnimationFrame(frame);
+}
+function renderChampion(){
+  const el=document.getElementById("championBanner"); if(!el) return;
+  const ch=champion();
+  if(!ch){ el.style.display="none"; return; }
+  const winners=ENTRIES.filter(e=>e.teams.some(t=>norm(t)===norm(ch)));
+  const share=winners.length?poolTotal()/winners.length:0;
+  const who = winners.length ? `<b>${esc(winners.map(w=>w.name).join(", "))}</b> win the pool — RM${share.toFixed(0)} each`
+    : "nobody backed the champion — pool rolls over 😅";
+  el.innerHTML=`<span class="champ-emoji">🏆</span>`+
+    `<div><div class="champ-title">${flagOf(ch)} ${esc(ch)} — World Champions!</div>`+
+    `<div class="champ-sub">${who}</div></div>`+
+    `<button class="champ-replay" id="champReplay">🎉 Replay</button>`;
+  el.style.display="";
+  document.getElementById("champReplay").onclick=()=>fireConfetti();
+  let prev=null; try{ prev=localStorage.getItem("wc_celebrated"); }catch(e){}
+  if(prev!==norm(ch)){ try{ localStorage.setItem("wc_celebrated",norm(ch)); }catch(e){} fireConfetti(8000); }
+}
+
+function renderAll(){ renderTop(); renderStandings(); renderTracker(); renderToggles(); renderBracket(); renderChampion(); }
 
 document.getElementById("saveBtn").onclick=()=>{ save(); const b=document.getElementById("saveBtn"); b.textContent="✓ Saved"; setTimeout(()=>b.textContent="Save",1500); };
 document.getElementById("resetBtn").onclick=()=>{ if(confirm("Reset to the official Round-of-32 teams and clear all winners?")){ state=blank(); save(); renderAll(); } };
