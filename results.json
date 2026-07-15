@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-15T09:16:06.852Z",
+  "updated": "2026-07-15T09:30:43.148Z",
   "source": "football-data.org",
   "matches": [
     {
@@ -505,7 +505,7 @@
     }
   ],
   "oddsCache": {
-    "fetchedAt": "2026-07-15T06:30:40.341Z",
+    "fetchedAt": "2026-07-15T09:30:43.148Z",
     "byPair": {
       "argentina|england": {
         "h": 2.65,
