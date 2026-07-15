@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-15T19:46:53.683Z",
+  "updated": "2026-07-15T20:00:46.530Z",
   "source": "football-data.org",
   "matches": [
     {
@@ -492,7 +492,7 @@
   "upcoming": [
     {
       "date": "2026-07-15T19:00:00Z",
-      "status": "IN_PLAY",
+      "status": "PAUSED",
       "stage": "SEMI_FINALS",
       "home": "England",
       "away": "Argentina",
