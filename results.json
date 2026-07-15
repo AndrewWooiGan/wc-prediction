@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-15T00:00:45.314Z",
+  "updated": "2026-07-15T00:15:26.092Z",
   "source": "football-data.org",
   "matches": [
     {
@@ -498,24 +498,19 @@
       "away": "Argentina",
       "score": null,
       "odds": {
-        "h": 2.7,
-        "d": 2.8,
-        "a": 2.85
+        "h": 2.65,
+        "d": 2.75,
+        "a": 2.95
       }
     }
   ],
   "oddsCache": {
-    "fetchedAt": "2026-07-14T21:06:58.159Z",
+    "fetchedAt": "2026-07-15T00:15:26.092Z",
     "byPair": {
-      "france|spain": {
-        "h": 1000,
-        "d": 1000,
-        "a": 1
-      },
       "argentina|england": {
-        "h": 2.7,
-        "d": 2.8,
-        "a": 2.85
+        "h": 2.65,
+        "d": 2.75,
+        "a": 2.95
       }
     }
   }
