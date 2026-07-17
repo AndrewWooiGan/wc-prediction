@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-17T02:00:35.973Z",
+  "updated": "2026-07-17T02:15:23.494Z",
   "source": "football-data.org",
   "matches": [
     {
@@ -524,7 +524,7 @@
     }
   ],
   "oddsCache": {
-    "fetchedAt": "2026-07-16T23:00:39.577Z",
+    "fetchedAt": "2026-07-17T02:15:23.493Z",
     "byPair": {
       "england|france": {
         "h": 1.89,
