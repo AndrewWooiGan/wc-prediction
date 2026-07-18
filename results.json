@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-18T21:15:25.262Z",
+  "updated": "2026-07-18T21:26:30.928Z",
   "source": "football-data.org",
   "matches": [
     {
@@ -504,7 +504,7 @@
       "away": "England",
       "score": {
         "h": 0,
-        "a": 1
+        "a": 2
       },
       "odds": {
         "h": 2.4,
