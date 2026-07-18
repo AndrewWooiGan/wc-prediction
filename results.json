@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-18T22:00:37.784Z",
+  "updated": "2026-07-18T22:15:26.905Z",
   "source": "football-data.org",
   "matches": [
     {
@@ -498,7 +498,7 @@
   "upcoming": [
     {
       "date": "2026-07-18T21:00:00Z",
-      "status": "PAUSED",
+      "status": "IN_PLAY",
       "stage": "THIRD_PLACE",
       "home": "France",
       "away": "England",
