@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-18T21:00:31.304Z",
+  "updated": "2026-07-18T21:15:25.262Z",
   "source": "football-data.org",
   "matches": [
     {
@@ -498,15 +498,18 @@
   "upcoming": [
     {
       "date": "2026-07-18T21:00:00Z",
-      "status": "TIMED",
+      "status": "IN_PLAY",
       "stage": "THIRD_PLACE",
       "home": "France",
       "away": "England",
-      "score": null,
+      "score": {
+        "h": 0,
+        "a": 1
+      },
       "odds": {
-        "h": 1.81,
-        "d": 3.9,
-        "a": 3.8
+        "h": 2.4,
+        "d": 3.7,
+        "a": 2.55
       }
     },
     {
@@ -517,23 +520,23 @@
       "away": "Argentina",
       "score": null,
       "odds": {
-        "h": 2.38,
-        "d": 3.1,
+        "h": 2.36,
+        "d": 3.15,
         "a": 3.8
       }
     }
   ],
   "oddsCache": {
-    "fetchedAt": "2026-07-18T18:15:24.615Z",
+    "fetchedAt": "2026-07-18T21:15:25.262Z",
     "byPair": {
       "england|france": {
-        "h": 1.81,
-        "d": 3.9,
-        "a": 3.8
+        "h": 2.4,
+        "d": 3.7,
+        "a": 2.55
       },
       "argentina|spain": {
-        "h": 2.38,
-        "d": 3.1,
+        "h": 2.36,
+        "d": 3.15,
         "a": 3.8
       }
     }
