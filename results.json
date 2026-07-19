@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-19T21:45:26.435Z",
+  "updated": "2026-07-19T21:59:17.391Z",
   "source": "football-data.org",
   "matches": [
     {
@@ -501,24 +501,7 @@
       "winner": "England"
     }
   ],
-  "upcoming": [
-    {
-      "date": "2026-07-19T19:00:00Z",
-      "status": "PAUSED",
-      "stage": "FINAL",
-      "home": "Spain",
-      "away": "Argentina",
-      "score": {
-        "h": 0,
-        "a": 0
-      },
-      "odds": {
-        "h": 2.28,
-        "d": 3.15,
-        "a": 3.95
-      }
-    }
-  ],
+  "upcoming": [],
   "oddsCache": {
     "fetchedAt": "2026-07-19T19:15:24.825Z",
     "byPair": {
