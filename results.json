@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-19T03:15:23.340Z",
+  "updated": "2026-07-19T03:30:33.051Z",
   "source": "football-data.org",
   "matches": [
     {
@@ -517,7 +517,7 @@
     }
   ],
   "oddsCache": {
-    "fetchedAt": "2026-07-19T00:15:31.896Z",
+    "fetchedAt": "2026-07-19T03:30:33.050Z",
     "byPair": {
       "argentina|spain": {
         "h": 2.38,
