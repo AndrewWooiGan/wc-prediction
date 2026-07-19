@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-19T21:30:29.818Z",
+  "updated": "2026-07-19T21:45:26.435Z",
   "source": "football-data.org",
   "matches": [
     {
@@ -504,7 +504,7 @@
   "upcoming": [
     {
       "date": "2026-07-19T19:00:00Z",
-      "status": "IN_PLAY",
+      "status": "PAUSED",
       "stage": "FINAL",
       "home": "Spain",
       "away": "Argentina",
