@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-19T22:00:37.076Z",
+  "updated": "2026-07-19T22:15:24.622Z",
   "source": "football-data.org",
   "matches": [
     {
@@ -499,6 +499,12 @@
       "home": "France",
       "away": "England",
       "winner": "England"
+    },
+    {
+      "stage": "FINAL",
+      "home": "Spain",
+      "away": "Argentina",
+      "winner": "Spain"
     }
   ],
   "upcoming": [],
