@@ -230,6 +230,31 @@
     font-family:'Barlow Semi Condensed',sans-serif;text-transform:uppercase;letter-spacing:.04em;font-size:12px;}
   .champ-replay:hover{background:color-mix(in srgb,var(--gold) 16%,var(--panel2));}
   @media(max-width:560px){#championBanner{flex-wrap:wrap}.champ-replay{margin-left:0;width:100%;text-align:center}}
+  /* FINAL PODIUM */
+  .podium3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
+  .pod3{background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:16px 12px;text-align:center;}
+  .pod3.gold{border-color:var(--gold);background:color-mix(in srgb,var(--gold) 9%,var(--panel2));box-shadow:0 0 0 1px var(--gold),0 12px 30px -14px var(--gold);}
+  .pod3-medal{font-size:32px;line-height:1;}
+  .pod3-team{font-family:'Barlow Semi Condensed',sans-serif;font-weight:800;font-size:18px;text-transform:uppercase;margin-top:6px;line-height:1.05;}
+  .pod3-label{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;font-weight:600;margin-top:2px;}
+  .pod3-bk{font-size:12px;color:var(--text);margin-top:9px;padding-top:9px;border-top:1px solid var(--line);}
+  .pod3-bk b{color:var(--accent2);}
+  .pod3-win{color:var(--gold);font-weight:700;margin-top:3px;font-size:12px;}
+  @media(max-width:560px){.podium3{grid-template-columns:1fr}}
+
+  /* 2030 FLOATING BANNER */
+  #wc2030{position:fixed;left:50%;bottom:16px;transform:translateX(-50%);z-index:9000;max-width:min(600px,94vw);
+    display:flex;align-items:center;gap:12px;padding:11px 12px 11px 16px;border-radius:16px;border:1px solid var(--gold);
+    background:linear-gradient(135deg,color-mix(in srgb,var(--gold) 20%,var(--panel)),var(--panel) 65%);
+    box-shadow:0 12px 34px -10px rgba(0,0,0,.6), 0 0 30px -14px var(--gold);animation:floaty 3.6s ease-in-out infinite;}
+  @keyframes floaty{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(-5px)}}
+  #wc2030 .w-emoji{font-size:24px;flex:0 0 auto;line-height:1;}
+  #wc2030 .w-txt{font-size:12.5px;line-height:1.35;color:var(--text);}
+  #wc2030 .w-txt b{display:block;color:var(--gold);font-family:'Barlow Semi Condensed',sans-serif;text-transform:uppercase;letter-spacing:.02em;font-size:14px;}
+  #wc2030 .w-count{color:var(--accent);font-weight:700;}
+  #wc2030 .w-x{flex:0 0 auto;margin-left:2px;background:transparent;border:none;color:var(--muted);font-size:19px;line-height:1;cursor:pointer;padding:2px 5px;box-shadow:none;}
+  #wc2030 .w-x:hover{color:var(--text);}
+  @media(max-width:560px){#wc2030{bottom:10px;padding:10px 10px 10px 13px}#wc2030 .w-emoji{font-size:20px}#wc2030 .w-txt{font-size:11.5px}}
 
   /* TABLES */
   table{width:100%;border-collapse:collapse;font-size:14px;}
@@ -369,6 +394,7 @@
   </header>
 
   <div id="championBanner" style="display:none"></div>
+  <div id="finalPodium" style="display:none"></div>
 
   <div id="upcomingWrap" style="display:none">
     <h2>Kicking off within 24h <button class="sec-toggle" id="upcToggle">Hide</button></h2>
@@ -419,6 +445,24 @@
 
 <div id="bkTip"></div>
 <canvas id="confetti"></canvas>
+
+<div id="wc2030">
+  <span class="w-emoji">⚽</span>
+  <div class="w-txt"><b>See you in 4 years!</b>FIFA World Cup 2030 · 🇪🇸 Spain · 🇵🇹 Portugal · 🇲🇦 Morocco — kicks off in <span class="w-count" id="wc2030count">…</span></div>
+  <button class="w-x" id="wc2030x" aria-label="Dismiss">×</button>
+</div>
+<script>
+(function(){
+  var el=document.getElementById("wc2030"); if(!el) return;
+  try{ if(localStorage.getItem("wc2030_dismissed")==="1") el.style.display="none"; }catch(e){}
+  var x=document.getElementById("wc2030x");
+  if(x) x.onclick=function(){ el.style.display="none"; try{localStorage.setItem("wc2030_dismissed","1");}catch(e){} };
+  var target=new Date("2030-06-08T00:00:00Z").getTime(), c=document.getElementById("wc2030count");
+  function tick(){ if(!c) return; var d=target-Date.now(); if(d<=0){ c.textContent="it's here! 🎉"; return; }
+    c.textContent=Math.floor(d/864e5).toLocaleString()+" days"; }
+  tick(); setInterval(tick,60000);
+})();
+</script>
 
 <div id="roadModal" class="modal"><div class="modal-card" id="roadCard"></div></div>
 
@@ -640,6 +684,32 @@ function renderStandings(){
 }
 
 let UPCOMING=[];
+let THIRD_PLACE="";   // winner of the third-place playoff, from official results
+function renderPodium(){
+  const el=document.getElementById("finalPodium"); if(!el) return;
+  const ch=champion();
+  if(!ch){ el.style.display="none"; return; }
+  const finalists=[teamAt(104,"top"), teamAt(104,"bot")];
+  const ru = finalists.find(t=>t && norm(t)!==norm(ch)) || "";
+  const pool=poolTotal();
+  const rows=[
+    {medal:"🥇", label:"Champion", team:ch, gold:true},
+    {medal:"🥈", label:"Runner-up", team:ru},
+    {medal:"🥉", label:"Second runner-up", team:THIRD_PLACE}
+  ];
+  const cards=rows.map(r=>{
+    if(!r.team) return "";
+    const bk=backersOf(r.team);
+    const win = r.gold ? (bk.length?`<div class="pod3-win">${esc(bk.join(", "))} win RM${(pool/bk.length).toFixed(0)} each 🎉</div>`:`<div class="pod3-win">No backers — pool rolls over</div>`) : "";
+    const bkLine = bk.length ? `Backed by <b>${esc(bk.join(", "))}</b>` : `<span style="color:var(--muted)">No pool backers</span>`;
+    return `<div class="pod3${r.gold?" gold":""}"><div class="pod3-medal">${r.medal}</div>`+
+      `<div class="pod3-team">${flagOf(r.team)} ${esc(r.team)}</div>`+
+      `<div class="pod3-label">${r.label}</div>`+
+      `<div class="pod3-bk">${bkLine}</div>${win}</div>`;
+  }).join("");
+  el.innerHTML=`<h2>Final Standings</h2><div class="card"><div class="podium3">${cards}</div></div>`;
+  el.style.display="";
+}
 function teamNextOdds(t){
   const k=norm(t);
   for(const m of UPCOMING){ if(!m.odds) continue;
@@ -811,7 +881,7 @@ function renderChampion(){
   if(prev!==norm(ch)){ try{ localStorage.setItem("wc_celebrated",norm(ch)); }catch(e){} fireConfetti(8000); }
 }
 
-function renderAll(){ renderTop(); renderStandings(); renderTracker(); renderToggles(); renderBracket(); renderChampion(); }
+function renderAll(){ renderTop(); renderStandings(); renderTracker(); renderToggles(); renderBracket(); renderChampion(); renderPodium(); }
 
 document.getElementById("saveBtn").onclick=()=>{ save(); const b=document.getElementById("saveBtn"); b.textContent="✓ Saved"; setTimeout(()=>b.textContent="Save",1500); };
 document.getElementById("resetBtn").onclick=()=>{ if(confirm("Reset to the official Round-of-32 teams and clear all winners?")){ state=blank(); save(); renderAll(); } };
@@ -889,10 +959,12 @@ async function loadOfficial(opts){
     if(!res.ok){ el.textContent="⚠️ results.json not found (is the site hosted?)"; msg="⚠️ Not found"; return; }
     const data=await res.json();
     UPCOMING = data.upcoming || [];
+    const tp3=(data.matches||[]).find(m=>m.stage==="THIRD_PLACE" && m.winner); THIRD_PLACE = tp3?tp3.winner:"";
     if(manual){ state.pick = {}; }   // manual fetch = rebuild purely from official results (drop unofficial/manual picks)
     const changed=applyOfficial(data.matches);
     if(manual || changed){ save(); renderAll(); }
     renderTracker();
+    renderPodium();
     renderUpcoming(data.upcoming);
     if(data.updated){
       const d=new Date(data.updated);
